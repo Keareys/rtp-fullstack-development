@@ -1,0 +1,16 @@
+#help-section{
+	width: 90%;
+	h2{
+		color: white;
+	}
+	.help-wrapper{
+		margin: {
+			top: 200px;
+		}
+		.help-headers{
+			color: $rtpMuted;
+			font-size: 1.2em;
+			text-align: left;
+		}
+	}
+}

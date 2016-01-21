@@ -1,0 +1,64 @@
+<!-- insert Navigation -->
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+    <div ui-view="project-content">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+            <thead>
+                <tr>
+                    <th st-sort="Project_Title">Title</th>
+                    <th st-sort="Sponsor_Agency">Sponsor</th>
+                    <th st-sort="County">County</th>
+                    <th st-sort="Sponsor_Status"> Status</th>
+                    <th st-sort="Performance_Status">Performance</th>
+                    <th st-sort="Feature_Type">Feature</th>
+                    <th style="text-align: right">Tools</th>
+                </tr>
+                <tr>
+                    <th colspan="5">
+                        <input st-search="" class="form-control" placeholder="Global Search ..." type="text" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.Project_Title}}</td>
+                    <td>{{row.Sponsor_Agency}}</td>
+                    <td>{{row.County}}</td>
+                    <td>{{row.Sponsor_Status }}</td>
+                    <td>{{row.Performance_Status}}</td>
+                    <td>{{row.Feature_Type}}</td>
+                    <td style="width:100px; text-align: right">
+                        <button class="btn btn-danger btn-fixer-delete" ng-if="!row.Feature_Type"><i class="fa fa-map"></i> </button>
+                        <button class="btn btn-success btn-fixer-delete" ng-if="row.Feature_Type"><i class="fa fa-check"></i> </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- Modals -->
+<!-- Status Timeline Modal -->
+<div class="modal fade bs-example-modal-lg" id="statusChangeModal" tabindex="-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalExitFixer modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close btn btn-default" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-1x"></i></button> -->
+                <button type="button" class="close resetMessage" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title borderBottom pad-bottom-m">Status Messages</h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div id="messageBody" class="newMessageBody">
+                        <div class="col-md-12 statusMessageWrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

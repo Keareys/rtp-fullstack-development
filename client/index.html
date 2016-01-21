@@ -1,0 +1,218 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/Leaflet.EasyButton/src/easy-button.css" />
+    <link rel="stylesheet" href="bower_components/angular-timeline/dist/angular-timeline.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- Animate css -->
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/animate.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v0.4.0/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v0.4.0/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.2/esri-leaflet-geocoder.css">
+    <!-- Leaflet Draw -->
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' rel='stylesheet' />
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <!-- <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="app/app.css">
+    <!-- injector:css -->
+    <!-- endinjector -->
+    <!-- endbuild -->
+    <style>
+    #actionPanel {
+        //background: -webkit-linear-gradient(rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);
+        //background: -moz-linear-gradient(-45deg, rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);
+    }
+    
+    .grad {
+        // background: -webkit-linear-gradient(rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);
+        // background: -moz-linear-gradient(-45deg, rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);
+    }
+    </style>
+</head>
+
+<body ng-app="testApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <nav-template></nav-template>
+    <usernav-template></usernav-template>
+    <div ui-view="" class="viewport"></div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!-- Modal Directive -->
+    <!-- <modal-template></modal-template> -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+    </script>
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/Leaflet.EasyButton/src/easy-button.js"></script>
+    <script src="bower_components/Wicket/wicket.js"></script>
+    <script src="bower_components/Wicket/wicket-arcgis.js"></script>
+    <script src="bower_components/Wicket/wicket-gmap3.js"></script>
+    <script src="bower_components/Wicket/wicket-leaflet.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-timeline/dist/angular-timeline.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/esri-leaflet/dist/esri-leaflet.js"></script>
+    <script src="bower_components/leaflet-providers/leaflet-providers.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+    <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+    <script src="bower_components/remarkable-bootstrap-notify/bootstrap-notify.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="assets/js/wellknown.js"></script>
+    <script src="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v0.4.0/dist/leaflet.markercluster.js"></script>
+    <!-- Load Clustered Feature Layer from CDN -->
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.clustered-feature-layer/1.0.2/esri-leaflet-clustered-feature-layer.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.gp/1.0.2/esri-leaflet-gp.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.2/esri-leaflet-geocoder.js"></script>
+    <!-- Bing maps -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+    <script type="text/javascript" src="assets/js/leaflet.bing.layer.js"></script>
+    <!-- Leaflet L.GeoSearch Geocode url: https://github.com/smeijer/L.GeoSearch -->
+    <!--
+    <script src="assets/js/l.control.geosearch.js"></script>
+    <script src="assets/js/l.geosearch.provider.google.js"></script>
+-->
+    <!-- Leaflet Draw -->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
+    <!-- adding bootstrap -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- build:js(.tmp) app/app.js -->
+    <script src="app/app.js"></script>
+    <!-- injector:js -->
+    <script src="app/about/about.controller.js"></script>
+    <script src="app/about/about.js"></script>
+    <script src="app/account/account.js"></script>
+    <script src="app/account/login/login.controller.js"></script>
+    <script src="app/account/myaccount/myaccount.controller.js"></script>
+    <script src="app/account/myaccount/myaccount.js"></script>
+    <script src="app/account/settings/settings.controller.js"></script>
+    <script src="app/account/signup/signup.controller.js"></script>
+    <script src="app/admin/admin.controller.js"></script>
+    <script src="app/admin/admin.js"></script>
+    <script src="app/bundles/bundles.controller.js"></script>
+    <script src="app/bundles/bundles.js"></script>
+    <script src="app/createproject/createproject.controller.js"></script>
+    <script src="app/createproject/createproject.js"></script>
+    <script src="app/createwizard1/createwizard1.controller.js"></script>
+    <script src="app/createwizard1/createwizard1.js"></script>
+    <script src="app/createwizard2/createwizard2.controller.js"></script>
+    <script src="app/createwizard2/createwizard2.js"></script>
+    <script src="app/createwizard3/createwizard3.controller.js"></script>
+    <script src="app/createwizard3/createwizard3.js"></script>
+    <script src="app/dashboard/dashboard.controller.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
+    <script src="app/errorlog/errorlog.controller.js"></script>
+    <script src="app/errorlog/errorlog.js"></script>
+    <script src="app/feedback/feedback.controller.js"></script>
+    <script src="app/feedback/feedback.js"></script>
+    <script src="app/feedbackreview/feedbackreview.controller.js"></script>
+    <script src="app/feedbackreview/feedbackreview.js"></script>
+    <script src="app/help/help.controller.js"></script>
+    <script src="app/help/help.js"></script>
+    <script src="app/importprojects/importprojects.controller.js"></script>
+    <script src="app/importprojects/importprojects.js"></script>
+    <script src="app/main/main.controller.js"></script>
+    <script src="app/main/main.js"></script>
+    <script src="app/mapprojects/mapprojects.controller.js"></script>
+    <script src="app/mapprojects/mapprojects.js"></script>
+    <script src="app/messages/messages.controller.js"></script>
+    <script src="app/messages/messages.js"></script>
+    <script src="app/performance/performance.controller.js"></script>
+    <script src="app/performance/performance.js"></script>
+    <script src="app/projectlist/projectlist.controller.js"></script>
+    <script src="app/projectlist/projectlist.js"></script>
+    <script src="app/systememail/systememail.controller.js"></script>
+    <script src="app/systememail/systememail.js"></script>
+    <script src="app/useraccount/useraccount.controller.js"></script>
+    <script src="app/useraccount/useraccount.js"></script>
+    <script src="app/viewprojects/viewprojects.controller.js"></script>
+    <script src="app/viewprojects/viewprojects.js"></script>
+    <script src="components/auth/auth.service.js"></script>
+    <script src="components/auth/user.service.js"></script>
+    <script src="components/controllers/mapprojects/mapprojects.controller.js"></script>
+    <script src="components/controllers/user_modal/user_modal.controller.js"></script>
+    <script src="components/directives/csSelect/csSelect.directive.js"></script>
+    <script src="components/directives/modal.controller.js"></script>
+    <script src="components/directives/modal.directive.js"></script>
+    <script src="components/directives/nav/nav.controller.js"></script>
+    <script src="components/directives/nav/nav.directive.js"></script>
+    <script src="components/directives/pageSelect/pageSelect.directive.js"></script>
+    <script src="components/directives/user-nav/user-nav.controller.js"></script>
+    <script src="components/directives/user-nav/user-nav.directive.js"></script>
+    <script src="components/modal/bundledProjects/bundledProjects.controller.js"></script>
+    <script src="components/modal/editStatus/editStatus.controller.js"></script>
+    <script src="components/modal/messages/messages.controller.js"></script>
+    <script src="components/modal/modal.service.js"></script>
+    <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/services/baseurl/baseurl.service.js"></script>
+    <script src="components/services/contacts/contacts.service.js"></script>
+    <script src="components/services/dashboard/dashboard.service.js"></script>
+    <script src="components/services/dropdowns/dropdowns.service.js"></script>
+    <script src="components/services/errors/errors.service.js"></script>
+    <script src="components/services/feedback/feedback.service.js"></script>
+    <script src="components/services/mapping/mapping.service.js"></script>
+    <script src="components/services/messages/messages.service.js"></script>
+    <script src="components/services/performance/performance.service.js"></script>
+    <script src="components/services/projects/projects.service.js"></script>
+    <script src="components/services/sessions/sessions.service.js"></script>
+    <script src="components/services/status/status.service.js"></script>
+    <script src="components/services/systememail/systememail.service.js"></script>
+    <script src="components/services/users/users.service.js"></script>
+    <script src="components/socket/socket.service.js"></script>
+    <!-- endinjector -->
+    <!-- endbuild -->
+</body>
+
+</html>

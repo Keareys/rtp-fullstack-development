@@ -1,0 +1,19 @@
+#registerBox{
+	margin: {
+		top: 80px;
+	}
+	transform: translate2d(20px, 10px);
+	.new-user{
+		border-bottom: 1px solid #d1d1d1;
+		padding:{
+			bottom: 20px;
+			top: 10px;
+		}
+	}
+}
+
+.panel-success {
+	background-color: green;
+	color:white;
+	padding:10px;
+}

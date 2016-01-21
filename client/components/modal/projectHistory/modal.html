@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+    <p ng-if="modal.text" ng-bind="modal.text"></p>
+    <div ng-if="modal.html" ng-bind-html="modal.html"></div>
+    <!-- <div class="page-header">
+        <h1 id="timeline">Timeline</h1>
+    </div> -->
+    <timeline>
+        <timeline-event ng-repeat="event in modal.events">
+            <timeline-badge class="{{event.badgeClass}}">
+                <i class="glyphicon {{event.badgeIconClass}}"></i>
+            </timeline-badge>
+            <timeline-panel class="{{event.badgeClass}}">
+                <timeline-heading>
+                    <h4>{{event.title}}</h4><br>
+                    <p>{{ event.date | date:'medium' }}</p>
+                </timeline-heading>
+                <p>{{event.content}}</p>
+            </timeline-panel>
+        </timeline-event>
+    </timeline>
+</div>
+<div class="modal-footer">
+    <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+</div>

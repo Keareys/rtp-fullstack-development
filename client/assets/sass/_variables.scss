@@ -1,0 +1,23 @@
+//colors
+$my_color: rgb(1, 174, 239);
+$user: lightgray;
+//$cosBlue: #3EBCFD;
+$cosBlue: rgb(1, 174, 239);
+$border-color: #3ebcfd;
+$info: #c1c1c1;
+
+$circle-width: 40px;
+$border-width: 6px;
+
+// Messaging
+$messageColor: #373737;
+$close: #e51c23;
+$send: #2196f3;
+$check: #4caf50;
+
+@mixin setBgColorAndHover($baseColor){
+	color: $baseColor;
+		&:hover{
+			color: darken($baseColor, 15%);	
+		}
+}

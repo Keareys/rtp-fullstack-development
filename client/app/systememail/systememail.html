@@ -1,0 +1,55 @@
+<section id="mail-section">
+	<!-- insert Navigation -->
+	<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+	<div class="mail-wrapper">
+		<h3 class="dash-headers text-center">
+        	{{ pageTitle || "Sendgrid" }}
+        	<div class="inner-line"></div>
+    	</h3>
+	    <div style="padding-bottom:10px">
+	        <h3 style="color:#01aeef"> {{ pageTitle }}</h3>
+	        <button class="btn btn-primary" ng-click="sendEmailModal()"><i class="fa fa-envelope"></i> Send New Email</button>
+	        <a ui-sref="viewprojects" ng-click="resetMode()">
+	            <button ng-show="viewMode === true || editMode === true || mapMode === true" class="btn btn-default"> Back to Projects</button>
+	        </a>
+	        <!-- View Mode -->
+	        <button class="btn btn-warning" ng-show="viewMode === true" ng-click="openStatusModal()"><i class="fa fa-trash-o"> </i> Change Status</button>
+	        <button class="btn btn-primary" ng-show="mapMode === true || viewMode === true" ng-click="openMessageModal()"><i class="fa fa-envelope"> </i> Message</button>
+	        <button class="btn btn-default" ng-show="viewMode === true"><i class="fa fa-trash-o"> </i> Print</button>
+	        <!-- End view mode -->
+	        <!-- Edit Mode -->
+	        <button class="btn btn-primary" ng-show="editMode === true"><i class="fa fa-trash-o"> Save Progress</i></button>
+	        <button class="btn btn-warning" ng-show="editMode === true"><i class="fa fa-trash-o"> Discard</i></button>
+	        <!-- End edit mode -->
+	        <!-- Map Mode -->
+	        <!-- End map mode -->
+	    </div>
+	    <div class="container">
+	        <div class="row" ng-repeat="index in emails">
+	            <div class="col-md-12">
+	                <div class="testimonials">
+	                    <div class="active item">
+	                        <blockquote>
+	                            <p><b>{{ index.Title }}</b><br> {{ index.Date | date:'medium' }}</p>
+	                        </blockquote>
+	                        <div class="carousel-info">
+	                            <div class="col-md-3"> <i class="glyphicon glyphicon-send glyphicon-lg pull-left"></i>
+	                                <div class="pull-left"> <span class="testimonials-name">Requests</span> <span class="testimonials-post emailopened"> {{ stats.requests }}</span></div>
+	                            </div>
+	                            <div class="col-md-3"> <i class="glyphicon glyphicon-envelope glyphicon-lg pull-left"></i>
+	                                <div class="pull-left"> <span class="testimonials-name">Delivered</span> <span class="testimonials-post emailopened">{{ stats.delivered }}</span></div>
+	                            </div>
+	                            <div class="col-md-3"> <i class="glyphicon glyphicon-folder-open glyphicon-lg pull-left"></i>
+	                                <div class="pull-left"> <span class="testimonials-name">Opens</span> <span class="testimonials-post emailopened">{{ stats.opens }}</span></div>
+	                            </div>
+	                            <div class="col-md-3"> <i class="glyphicon glyphicon-remove glyphicon-lg pull-left"></i>
+	                                <div class="pull-left"> <span class="testimonials-name">Bounces</span> <span class="testimonials-post emailopened">{{ stats.bounces }}</span></div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</section>

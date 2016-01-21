@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body" ng-init="init()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel list-box">
+                    <h3 class="list-header">List</h3>
+                    <div class="list-box-wrapper">
+                        <div class="inner-box" ng-repeat="project in modal.project">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h4 class="inner-text">{{ $index + 1 }}. {{ project.Project_Title }}</h4>
+                                    <p class="inner-text">{{ project.Project_Description }}</p>
+                                </div>
+                                <!-- <div class="col-md-5">
+                                    <button class="btn btn-lg btn-warning" ng-click="showProjects(name.List_ID)">View</button>
+                                    <button class="btn btn-lg btn-danger" ng-click="removeList(name.List_ID)">Delete</button>
+                                    <input class="check-list hidden pull-right" type="checkbox" ng-click="showProjects(name.List_ID)">
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-8" id="map-modal-view" style="height:768px; padding-top:10px;">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+</div>

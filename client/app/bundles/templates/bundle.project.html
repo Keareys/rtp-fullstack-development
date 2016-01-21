@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel list-box">
+                <!-- <h3 class="list-header">List</h3> -->
+                <div class="button-wrappers">
+                    <button class="btn btn-default" ng-click="reloadMainList()">Back to List</button>
+                    <!-- End view mode -->
+                    <!-- Edit Mode -->
+                </div>
+                <div class="list-box-wrapper">
+                    <button class="btn btn-lg btn-warning" ng-click="showProjects(name.List_ID)">View Details</button>
+                    <div class="inner-box" ng-repeat="project in projectList">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h4 class="inner-text">{{ $index + 1 }}. {{ project.Project_Title }}</h4>
+                                <!-- <p class="inner-text">{{ project.Project_Description }}</p> -->
+                            </div>
+                            <div class="col-md-5">
+                                <input class="check-list hidden pull-right" type="checkbox" ng-click="showProjects(name.List_ID)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" id="map-div" style="height:500px; padding:10px;">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+#message-section{
+	height: 100%;
+	width: 100%;
+	padding:{
+		top: 150px;
+	}
+	.message-wrapper{
+		width: 90%;
+		margin: 0 auto;
+		background-color: #FFFFFF;
+		
+	}
+	.message-table{
+		width: 90%;
+		margin: 0 auto;
+		margin:{
+			bottom: 10px;
+		}
+		border:{
+			left: 1px solid #D0D0D0;
+			right: 1px solid #D0D0D0;
+		}
+		thead{
+			//border: 1px solid #D0D0D0;
+			background-color: #ECECEC;
+			tr{
+				th{
+					font-weight: 300;
+					text-align: center;
+					border: 1px solid #D0D0D0;
+				}
+			}
+		}
+		tbody{
+			.btn{
+				text-align: right;
+			}
+		}
+		tfoot{
+			border: 1px solid #D0D0D0;
+			background-color: #ECECEC;
+			nav{
+				position: absolute;
+				bottom: -10px;
+				ul{
+					@include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+					a{
+						border-radius: 0px;
+						color: $rtpMuted;
+						padding: {
+							top:10px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

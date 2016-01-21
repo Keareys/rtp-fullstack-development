@@ -1,0 +1,40 @@
+<section id="feedbackreview-section">
+	<div class="col-lg-12 feedbackreview-wrapper">
+		<div class="col-lg-12">
+			<h2 class="dash-headers text-center">
+				Feedback  Review
+		    	<div class="inner-line"></div>
+			</h2>
+		</div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    Search:
+                    <input ng-model="searchTextAgencies" placeholder="Filter by name...">
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th data-field="agency">Name</th>
+                    <th data-field="agency">Email</th>
+                    <th data-field="agency">Page</th>
+                    <th data-field="agency">Category</th>
+                    <th data-field="agency">Comment</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="x in feedbacklist | filter:searchTextAgencies | orderBy:'updatedate'">
+                <td>{{ x.name }}</td>
+                <td>{{ x.email }}</td>
+                <td>{{ x.apppage }}</td>
+                <td>{{ x.feedbacktype }}</td>
+                <td>{{ x.comment }}</td>
+                <td style="width:200px">
+                    <button class="btn btn-warning" ng-if="x.issues === 0" ng-click="addToIssues(x.recid, x.comment, x.apppage)"><i class="fa fa-envelope"> </i> Add to Issues</button>
+                    <button class="btn btn-success disabled" ng-if="x.issues === 1"><i class="fa fa-check"> In Issues</i></button>
+                </td>
+            </tr>
+        </table>
+	</div>
+</section>

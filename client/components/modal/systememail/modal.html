@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+    <form id="systememailForm" class="form-horizontal">
+        <fieldset>
+            <legend></legend>
+            <!-- title -->
+            <div class="form-group">
+                <label for="systemTitle" class="col-lg-2 control-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="systemTitle" name="systemTitle" placeholder="Title" required ng-model="modal.email.systemTitle" />
+                </div>
+            </div>
+            <!-- email to -->
+            <div class="form-group">
+                <label for="systemEmailTo" class="col-lg-2 control-label">Email To</label>
+                <div class="col-lg-10">
+                    <select id="systemEmailTo" name="systemEmailTo" class="form-control" ng-model="modal.email.systemEmailTo">
+                        <option value="MTC Administrator">MTC Administrators</option>
+                        <option value="CMA Administrator">CMA Administrators</option>
+                        <option value="Multi-County Sponsor">Multi-County Sponsors</option>
+                        <option value="All Users">All Users</option>
+                    </select>
+                </div>
+            </div>
+            <!-- email from -->
+            <div class="form-group">
+                <label for="systemEmailFrom" class="col-lg-2 control-label">Email From</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="systemEmailFrom" name="systemEmailFrom" placeholder="support@planbayarea.org" required ng-model="modal.email.systemEmailFrom" />
+                </div>
+            </div>
+            <!-- Body -->
+            <div class="form-group">
+                <label for="systemEmailBody" class="col-lg-2 control-label">Email Message</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" id="systemEmailBody" name="systemEmailBody" required ng-model="modal.email.systemEmailBody"></textarea>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+</div>

@@ -1,0 +1,16 @@
+#about-section{
+	width: 90%;
+	h2{
+		color: white;
+	}
+	.about-wrapper{
+		margin:{
+			top: 200px;
+		}
+		.about-headers{
+			color: $rtpMuted;
+			font-size: 1.2em;
+			text-align: left;
+		}
+	}
+}

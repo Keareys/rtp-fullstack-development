@@ -1,0 +1,15 @@
+<div class="col-md-12" id="map">
+</div>
+<div id="info-pane" class="leaflet-bar" style="position: absolute;top: 70px;right: 10px;z-index:10;padding: 1em;background: white; width: 200px;">
+    <div class="row" style="padding: 1em;width: 100%;margin-top:60px">
+        <div class="col-md-12">
+            <h4>RID: {{ lrs.RID }}</h4>
+            <h4>From Measure: {{ lrs.From_Measure }}</h4>
+            <h4>To Measure: {{ lrs.To_Measure }}</h4>
+            <br>
+            <button class="btn btn-primary" ng-click="drawLRS()"> Draw Route</button>
+        </div>
+    </div>
+    <div class="row" id="gpInfo" style="padding: 1em;width: 100%;">
+    </div>
+</div>

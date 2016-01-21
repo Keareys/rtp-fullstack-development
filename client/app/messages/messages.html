@@ -1,0 +1,44 @@
+<section id="message-section">
+	<!-- insert Navigation -->
+	<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+	<!-- End Navigation -->
+	<div class="message-wrapper">
+		<div class="col-lg-12">
+            <h2 class="dash-headers text-center">
+            	Messages
+            	<div class="inner-line"></div>
+			</h2>
+        </div>
+	    <div class="container ">
+	        <div class="col-md-12">
+	            <div class="row">
+	                <div class="col-md-6" style="padding-bottom:10px">
+	                    Search:
+	                    <input ng-model="searchTextAgencies" placeholder="Filter by name...">
+	                </div>
+	            </div>
+	        </div>
+	        <table class="table table-striped table-bordered message-table">
+	            <thead>
+	                <tr>
+	                    <th data-field="agency">Title</th>
+	                    <th data-field="agency">Message</th>
+	                    <th data-field="agency">From</th>
+	                    <th data-field="agency">Commands</th>
+	                </tr>
+	            </thead>
+	            <tr ng-repeat="x in names | filter:searchTextAgencies | orderBy:'name'">
+	                <td> <a ng-href="/#/viewprojects?projectid={{ x.Project_ID }}">{{ x.Project_Title }} </a></td>
+	                <td>{{ x.Message_Text }}</td>
+	                <td>{{ x.From_User }}</td>
+	                <td style="width:200px">
+	                    <button class="btn btn-warning" ng-if="x.Read_Flag === 0" ng-click="updateMessage(x.Message_ID)"><i class="fa fa-envelope"> </i> Mark as Read</button>
+	                    <button class="btn btn-success disabled" ng-if="x.Read_Flag === 1"><i class="fa fa-check"> Read</i></button>
+	                     <button class="btn btn-primary" ng-click="showMessages(x.Project_ID)"><i class="fa fa-envelope"> </i> Reply</button>
+	                </td>
+	            </tr>
+	        </table>
+	    </div>
+	</div>
+
+</section>

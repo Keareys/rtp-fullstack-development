@@ -1,0 +1,273 @@
+html{
+	height: 100%;
+	//width: 100%;
+}
+body{
+	height: 100%;
+	width: 100%;
+	//font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+}
+.navbar{
+	ul{
+		li{
+			font-size: 20px;
+		}
+	}
+}
+.navbar-collapse{
+	padding-left: 0;
+	padding-right: 0;
+}
+.navbar-brand{
+	padding: 33px 190px;
+	background-image: url('../images/logoNav.png');
+	background-repeat: no-repeat;
+	background-position: 50% 60%;
+	margin-left: 20px !important;
+}
+@media(max-width: 835px){
+	.navbar-brand{
+		padding: 33px 100px;
+		background-image: url('../images/logoNavMobile.png');	
+	}	
+}
+.navTop {
+	li{
+		max-height: 138px;
+		a{
+			padding: 10px 20px 0px 20px;
+			padding-top: 13.5px;
+			line-height: 37px;
+			font-size: 14px;
+		}
+		a:hover ~.linkHoverBar{
+			padding: 0px 30px 0px 30px;
+		}
+		.linkHoverBar{
+			height: 2px;
+			background-color: $cosBlue;
+			width: 0;
+			margin: 0 auto;
+			@include transition-property(padding);
+			@include transition-duration(.3s);
+			@include transition-timing-function(ease);
+			@include transition-delay(0s);
+		}
+		.userIcon{
+			@include border-radius(1px);
+			color: $my_color;
+			font-size: 20px;
+			border: 1.5px solid $my_color;
+			padding: 10px;
+			vertical-align: middle;
+			@include transition-property(color, border, background-color);
+			@include transition-duration(.5s);
+			@include transition-timing-function(ease);
+			@include transition-delay(0s);
+			&:hover{}
+		}
+		.userIconInner{
+			color: lightgray;
+		}
+	}
+}
+.dropdown:hover .userIcon{
+	color: white;
+	border: 1.5px solid $my_color;
+	background-color: $my_color;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+	background-color: #ffffff;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+	background-color: #ffffff;
+}
+/* Side Menu */
+#lefty{
+	display: block !important;
+}
+#sidebar-wrapper {	
+    z-index: 1000;
+    position: static;
+    left: -200px;
+    width: 200px;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    //background: rgba(33, 33, 33, 1);
+    //background: -webkit-linear-gradient(rgba(64, 64, 64, 0.9) 0%, rgba(144,144,144,0.98) 67.21%);
+    background: #444447;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    &.active {
+	    left: 2px;
+	    width: 200px;
+	    -webkit-transition: all 0.4s ease 0s;
+	    -moz-transition: all 0.4s ease 0s;
+	    -ms-transition: all 0.4s ease 0s;
+	    -o-transition: all 0.4s ease 0s;
+	    transition: all 0.4s ease 0s;
+	}
+}
+@supports (-webkit-appearance:none) and (R:0) { #sidebar-wrapper { position: fixed; } }
+@-moz-document url-prefix() {#sidebar-wrapper { position: fixed;}}
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li{
+	    text-indent: 10px;
+		line-height: 40px;
+		border-bottom: 1px black solid;
+		overflow: hidden;
+		height: 46px;
+		@include transition-property(height);
+		@include transition-duration(.5s);
+		@include transition-timing-function(ease);
+		@include transition-delay(0s);
+		&.activeState{
+			height: 226px;
+		}
+		&.activeStateSmaller{
+			height: 137px;
+		}
+		.navHeader{
+			color: #ffffff;	
+		}
+		a{
+			display: block;
+		    text-decoration: none;
+		    text-align: left;
+		    color: #eeeeee;
+		    i{
+			    font-size: 1.5em;
+			    width: 50px;
+		    }
+		    small{
+			    vertical-align: super;
+			    //padding-left: 40px;
+		    }
+		    &:hover{
+			    text-decoration: none;
+				color: #fff;
+				background: $my_color;
+		    }
+		    &:active,&:focus{
+			    text-decoration: none;
+		    }
+		}
+		.navAnchorActiveColor{
+		    padding-left: 30px;
+	    }
+    }
+    > .sidebar-brand {
+			height: 69px;
+			font-size: 18px;
+			line-height: 55px;
+			padding-top: 5px;
+    	a{
+	    	color: white;	
+	    	&:hover{
+		    	color: #fff;
+				background: none;
+	    	}
+    	}
+		/*
+    	span{
+	    	margin-top: 15%;
+			padding-top: 50px;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			padding-right: 15px;
+			background:#a1a1a1;
+			-webkit-box-shadow: inset 4px 5px 11px -5px rgba(0,0,0,0.53);
+			-moz-box-shadow: inset 4px 5px 11px -5px rgba(0,0,0,0.53);
+			box-shadow: inset 4px 5px 11px -5px rgba(0,0,0,0.53);
+			@include border-radius(50px);
+			//#4F4F4F; another background color
+    	}
+		*/	
+	}
+}
+#menu-toggle {
+    z-index: 1;
+    position: fixed;
+    top: 65px;
+    left: 0.5px;
+}
+#menuWrapper{
+	position: absolute;
+}
+// New Menu
+#lefty{
+	width:50%;
+	background: rgba(33, 33, 33, 1);
+	ul.menu {
+	  padding: 0;
+	  width: 100%;
+	  
+	  li {
+	    list-style-type: none;
+	    display: block;
+	    float: left;
+	    background: #777;
+	    margin: 0;
+	    padding: .5em 0;
+	    -webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box; /* Fixes Firefox bug */
+		box-sizing: border-box;
+	    width: 20%;
+	    text-align: center;
+	    
+	    &:hover {
+	      background: #888;
+	    }
+	  }
+	}
+	a.open-panel, a.close-panel {
+	  display: none;
+	}
+}
+footer{
+	/*
+	min-height: 50px;
+	overflow: hidden;
+	*/
+	nav{
+		background-color: $my_color !important;
+		address{
+			color: white;
+			font-size: 90%;
+			a{
+				color: white;
+			}
+		}
+		.smallerScreen{
+			display: none;
+		}
+	}
+}
+@media(max-width: 900px){
+	footer{
+		/*
+			min-height: 50px;
+			overflow: hidden;
+		*/
+		nav{
+			address{
+				display: none;
+				font-size: 70%;
+			}
+			.smallerScreen{
+				display: block;
+			}
+		}
+	}
+}

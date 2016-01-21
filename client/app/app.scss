@@ -1,0 +1,172 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';
+@import '../assets/sass/_utility';
+/**
+ * App-wide Styles
+ */
+$messageColor: #373737;
+$close: #e51c23;
+$send: #2196f3;
+$check: #4caf50;
+
+//Colors
+$mainColor: #2196f3;
+$iconRed: #d9534f;
+$iconGreen: #5cb85c;
+$iconYellow:  #f0ad4e;
+$iconBg: #D2D2D2;
+$iconBorder: #8C8C8C;
+$rtpMuted: #6F6F6F;
+$navBlue: #296ad4;
+$nestedLink: #677184;
+$nestedHover: #EFF1F5;
+$footer: #EBF0F6;
+//$footerNav: #202532;
+$footerNav: #2b3442;
+$nestedNav: rgb(114, 153, 217);
+$mainBlue: #2196f3;
+
+$notLoginBg: rgb(253, 253, 253);
+
+$mainBgImage: url('../assets/images/1.png');
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.west {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    left: 10px;
+    margin-left: -5px;
+    top: 50%;
+    margin-top: -5px;
+    z-index: 500;
+}
+
+.east {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 10px;
+    margin-left: -5px;
+    top: 50%;
+    margin-top: -5px;
+    z-index: 500;
+}
+
+.geocoder-control-suggestions {
+    position: relative;
+    left: 30px !important;
+    width: 250px !important;
+}
+
+//=====Gloabl=====
+html{
+	//height: initial;
+	//width: initial;
+	height: 100%;
+}
+body{
+	height: inherit;
+	width: inherit;
+	//background-color: rgba(245,245,245,.4);
+	background-image: $mainBgImage;
+	//background-color: rgb(232, 232, 232);
+}
+.viewport{
+	height: 100%;
+}
+.pagination{
+	a{
+		&:hover{
+			cursor: pointer;		
+		}
+	}
+}
+.button-wrappers{
+	width: 90%;
+	margin: 0 auto;
+    padding: 10px;
+    margin:{
+	    bottom: 10px;
+    }
+	@include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+}
+//======Overrides====
+.btn{
+	&.btn-primary{
+		background-color: $mainBlue !important;
+	}
+}
+.modal-primary{
+	.modal-header{
+		background-color: $mainBlue !important;
+	}
+}
+//======Headers=======
+.dash-headers{
+	color: $rtpMuted;
+	font-weight: 300;
+	.inner-line{
+		width:40%;
+		height: 2px;
+		margin: 0 auto;
+		margin: {
+			top: 5px;
+			bottom: 10px;
+		}
+		padding: {
+			top: 10px;
+		}
+		@include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+	}
+}
+
+// @import '../assets/sass/screen.scss';
+// Component styles are injected through grunt
+// injector
+@import 'about/about.scss';
+@import 'account/login/login.scss';
+@import 'account/myaccount/myaccount.scss';
+@import 'account/signup/signup.scss';
+@import 'admin/admin.scss';
+@import 'bundles/bundles.scss';
+@import 'createproject/createproject.scss';
+@import 'createwizard1/createwizard1.scss';
+@import 'createwizard2/createwizard2.scss';
+@import 'createwizard3/createwizard3.scss';
+@import 'dashboard/dashboard.scss';
+@import 'errorlog/errorlog.scss';
+@import 'feedback/feedback.scss';
+@import 'feedbackreview/feedbackreview.scss';
+@import 'help/help.scss';
+@import 'importprojects/importprojects.scss';
+@import 'main/main.scss';
+@import 'main/paper.scss';
+@import 'mapprojects/mapprojects.scss';
+@import 'messages/messages.scss';
+@import 'performance/performance.scss';
+@import 'projectlist/projectlist.scss';
+@import 'systememail/systememail.scss';
+@import 'useraccount/useraccount.scss';
+@import 'viewprojects/viewprojects.scss';
+@import 'directives/modal.scss';
+@import 'directives/nav/nav.directive.scss';
+@import 'directives/user-nav/user-nav.scss';
+@import 'modal/messages/messages.scss';
+@import 'modal/modal.scss';
+@import 'navbar/navbar.scss';
+// endinjector

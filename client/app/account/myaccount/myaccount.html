@@ -1,0 +1,129 @@
+<section id="myaccount-section">
+	<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-8 col-md-offset-2 myaccount-wrapper">
+	            <div class="panel panel-primary">
+		            <div class="col-lg-12">
+		                <h3 class="dash-headers text-center">
+		                	About This Site
+		                	<div class="inner-line"></div>
+		            	</h3>
+	                </div>
+	                <div class="panel-heading hidden">
+	                    <h3 class="panel-title"></h3>
+	                </div>
+	                <div class="panel-body">
+	                    <div class="col-sm-2">
+	                        <img class="shadow pad-m img-responsive" src="assets/images/logos/{{currentUser.Agency}}.png">
+	                    </div>
+	                    <div class="col-md-10">
+	                        <uib-tabset>
+	                            <uib-tab heading="Manage Profile">
+	                                <div class="tab-pane fade active in" id="userInfo">
+	                                    <form class="form-horizontal" id="form-updateUser">
+	                                        <fieldset>
+	                                            <input type="hidden" class="form-control" id="userContactId" name="userContactId" readonly>
+	                                            <div class="form-group ma-top-m">
+	                                                <div class="col-md-6">
+	                                                    <h6 class="lead">Update Your Information?</h6>
+	                                                </div>
+	                                            </div>
+	                                            <!-- First -->
+	                                            <div class="form-group">
+	                                                <label for="userFirstName" class="col-lg-2 control-label">First Name</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="text" class="form-control" id="userFirstName" name="userFirstName" placeholder="First" ng-model="currentUser.First_Name" required>
+	                                                </div>
+	                                            </div>
+	                                            <!-- Last-->
+	                                            <div class="form-group">
+	                                                <label for="userLastName" class="col-lg-2 control-label">Last Name</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="text" class="form-control" id="userLastName" name="userLastName" placeholder="Last" ng-model="currentUser.Last_Name" required>
+	                                                </div>
+	                                            </div>
+	                                            <!-- Email -->
+	                                            <div class="form-group">
+	                                                <label for="userEmail" class="col-lg-2 control-label">Email</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="Email" ng-model="currentUser.Email" required data-parsley-type="email">
+	                                                </div>
+	                                            </div>
+	                                            <!-- Phone-->
+	                                            <div class="form-group">
+	                                                <label for="userPhone" class="col-lg-2 control-label">Phone</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="text" class="form-control" id="userPhone" name="userPhone" ng-model="currentUser.Phone" required placeholder="Phone">
+	                                                </div>
+	                                            </div>
+	                                            <!-- Job Title-->
+	                                            <div class="form-group">
+	                                                <label for="userJobTitle" class="col-lg-2 control-label">Job Title</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="text" class="form-control" id="userJobTitle" required name="userJobTitle" ng-model="currentUser.Job_Title" placeholder="Job Title">
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <div class="col-lg-6">
+	                                                    <a href="/dashboard">
+	                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	                                                    </a>
+	                                                    <button type="button" id="submitForms_Btn" class="btn btn-primary" ng-click="updateMyAccount()">Save changes</button>
+	                                                </div>
+	                                            </div>
+	                                        </fieldset>
+	                                    </form>
+	                                </div>
+	                            </uib-tab>
+	                           
+	                            <uib-tab>
+	                                <uib-tab-heading>
+	                                    <i class="glyphicon glyphicon-bell"></i> Update Password!
+	                                </uib-tab-heading>
+	                                <div class="tab-pane fade in" id="password">
+	                                    <form class="form-horizontal" id="form-updateUserpwd">
+	                                        <fieldset>
+	                                            <!--Hidden field -->
+	                                            <input type="hidden" class="form-control" id="userContactId_pwd" name="userContactId_pwd" readonly />
+	                                            <div class="form-group ma-top-m">
+	                                                <div class="col-md-6">
+	                                                    <h6 class="lead">Change User Password?</h6>
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label for="updateUserPassword" class="col-lg-2 control-label">New Password</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="password" class="form-control" id="pwd1" name="pwd1" required placeholder=" New Password" ng-model="currentPwd.pwd1">
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label for="confirmNewPassword" class="col-lg-2 control-label">Confirm Password</label>
+	                                                <div class="col-lg-5">
+	                                                    <input type="password" class="form-control" id="pwd2" required placeholder="Confirm Password" name="pwd2" ng-model = "currentPwd.pwd2" data-parsley-equalto="#pwd1" data-parsley-error-message="Passwords must match!">
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <div class="col-lg-6">
+	                                                    <a href="/dashboard">
+	                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	                                                    </a>
+	                                                    <button type="button" id="submitPwd_Btn" class="btn btn-primary" ng-click="updateMyPassword()">Save Password</button>
+	                                                </div>
+	                                            </div>
+	                                        </fieldset>
+	                                    </form>
+	                                </div>
+	                            </uib-tab>
+	                        </uib-tabset>
+	                        <div id="myTabContent" class="tab-content">
+	                            <!-- Basic Info -->
+	                            <!--Change User Password -->
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</section>

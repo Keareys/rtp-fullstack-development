@@ -1,0 +1,115 @@
+<!--<div class="container">-->
+<div class="map-section">
+    <div class="panel">
+        <div class="col-lg-12">
+            <h3 class="dash-headers text-center">
+                Project Details
+                <div class="inner-line"></div>
+            </h3>
+        </div>
+        <div class="button-wrappers">
+            <a ui-sref="viewprojects" ng-click="resetMode()">
+                <button ng-show="viewMode === true || editMode === true || mapMode === true" class="btn btn-default"> Back to Projects</button>
+            </a>
+            <button class="btn btn-primary" ng-click="openMessageModal()"><i class="fa fa-envelope"> </i> Message</button>
+            <!-- End view mode -->
+            <!-- Edit Mode -->
+        </div>
+        <div class="panel-heading ma-bottom-s">
+            <h4 class="panel-title">Project ID: 
+                <span>{{ projectid }}<span>
+            </h4>
+        </div>
+        <div class="col-md-6" id="map-view" style="height:750px; padding-top:10px;">
+            <div id="pnorth" class="col-md-12" style="position: absolute; top: 10px; height:25px; z-index:500;">
+                <button type="button" class="btn btn-primary btn-xs center-block"><span class="fa fa-arrow-circle-up" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div id="pwest" class="west">
+                <button type="button" class="btn btn-primary btn-xs west"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div id="peast" class="east">
+                <button type="button" class="btn btn-primary btn-xs"><span class="fa fa-arrow-circle-right" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-md-12" style="position: absolute; bottom: 10px; height:25px; z-index:500;">
+                <button id="psouth" type="button" class="btn btn-primary btn-xs center-block"><span class="fa fa-arrow-circle-down" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div id="project-details" class="col-md-6" style="height:750px;overflow: auto;padding-top:10px;">
+            <!-- Measure information -->
+            <div id="MeasureDiv" class="hidden">
+                <h4 style="color:#428BCA">RID: {{ lrs.RID }}</h4>
+                <h4 style="color:#428BCA">From: {{ lrs.From_Measure }}</h4>
+                <h4 style="color:#428BCA">To: {{ lrs.To_Measure }}</h4>
+            </div>
+            <!-- End Measure Information -->
+            <h4 style="color:#428BCA">Project Title</h4>
+            <p>{{ mapDetails[0].Project_Title }}</p>
+            <h4 style="color:#428BCA">Project Description</h4>
+            <p>{{ mapDetails[0].Project_Description }}</p>
+            <br>
+            <div ng-if="mapDetails[0].Modeling_Details">
+                <h4 style="color:#428BCA">Modeling Details</h4>
+                <p>{{ mapDetails[0].Modeling_Details }}</p>
+            </div>
+            <br>
+            <div ng-if="mapDetails[0].First_Name">
+                <h4 style="color:#428BCA">Modeling Contact</h4>
+                <p> Name: {{ mapDetails[0].First_Name }} {{ mapDetails[0].Last_Name}}
+                    <br> Email: {{ mapDetails[0].Email}}
+                    <br>
+                    <a ng-href="mailto: {{ mapDetails[0].Email }}" target="_top">Send Mail</a>
+                </p>
+                <br>
+            </div>
+            <div ng-if="modelingFilesCollection[0]">
+                <h4 style="color:#428BCA">Modeling Files</h4>
+                <table st-table="modelingFilesCollection" st-safe-src="modelingFilesCollection" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Download File</th>
+                            <th st-sort="Original_File_Name">File Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in modelingFilesCollection">
+                            <td>
+                                <a ng-href="{{ row.Modeling_File_Path }}"> Download </a>
+                            </td>
+                            <td>{{ row.Original_File_Name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--
+            <div>
+                <h4 style="color:#428BCA">Mapping Tool</h4>
+                <select class="form-control" ng-model="mapDetails[0].Tool_Type">
+                    <option value="Line"> Line</option>
+                    <option value="Point"> Point</option>
+                    <option value="Route"> Route</option>
+                    <option value="None"> None</option>
+                </select>
+                <br>
+                <button ng-click="updateToolType()" class="btn btn-default"> Update Tool Type</button>
+            </div>
+-->
+            <div>
+                <h4 style="color:#428BCA">Mapping Status</h4>
+                <select class="form-control" ng-model="mapDetails[0].Mapping_Status">
+                    <option value="Needs Confirmation"> Needs Confirmation</option>
+                    <option value="Requires Revision"> Requires Revision</option>
+                    <option value="Mapped"> Approved (Mapped)</option>
+                    <option value="Not Yet Mapped"> Not Yet Mapped</option>
+                    <option value="Not Mappable"> Not Mappable</option>
+                </select>
+                <br>
+                <button ng-click="updateMapStatus()" class="btn btn-default"> Update Map Status</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--</div>-->

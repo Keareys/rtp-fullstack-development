@@ -1,0 +1,100 @@
+<div class="modal-header">
+    <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+    <div ng-controller="UserModalCtrl">
+        <!--   <p ng-if="modal.text" ng-bind="modal.text"></p>
+        <div ng-if="modal.html" ng-bind-html="modal.html"></div> -->
+        <uib-tabset>
+            <!--  <uib-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active">
+                {{tab.content}}
+            </uib-tab> -->
+            <uib-tab>
+                <uib-tab-heading>
+                    <i class="glyphicon glyphicon-pencil"></i> User Info
+                </uib-tab-heading>
+                <form class="form-horizontal" id="form-updateContacts">
+                    <fieldset>
+                        <input type="hidden" class="form-control" id="userContactId" name="userContactId" readonly>
+                        <!-- First -->
+                        <div class="form-group">
+                            <label for="userFirstName" class="col-lg-2 control-label">First Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="userFirstName" name="userFirstName" placeholder="First" ng-model="modal.user.First_Name">
+                            </div>
+                        </div>
+                        <!-- Last-->
+                        <div class="form-group">
+                            <label for="userLastName" class="col-lg-2 control-label">Last Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="userLastName" name="userLastName" placeholder="Last" ng-model="modal.user.Last_Name">
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="userEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="Email" ng-model="modal.user.Email">
+                            </div>
+                        </div>
+                        <!-- Phone-->
+                        <div class="form-group">
+                            <label for="userPhone" class="col-lg-2 control-label">Phone</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="Phone" ng-model="modal.user.Phone">
+                            </div>
+                        </div>
+                        <!-- Job Title-->
+                        <div class="form-group">
+                            <label for="userJobTitle" class="col-lg-2 control-label">Job Title</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="userJobTitle" name="userJobTitle" placeholder="Job Title" ng-model="modal.user.Job_Title">
+                            </div>
+                        </div>
+                        <!-- Role -->
+                        <div class="form-group">
+                            <label for="userRole" class="col-lg-2 control-label">User Role</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="userRole" name="userRole" ng-model="modal.user.User_Role">
+                                    <option ng-repeat="option in roles" value="{{option.Role_Description}}">{{option.Role_Description}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Agency -->
+                        <div class="form-group">
+                            <label for="userAgency" class="col-lg-2 control-label">Agency</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="userAgency" name="userAgency" ng-model="modal.user.Agency">
+                                    <option ng-repeat="option in agencies" value="{{option.Agency_Name}}">{{option.Agency_Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- County Hidden -->
+                        <input type="hidden" id="userCounty" name="userCounty" ng-model="modal.user.County">
+                        <!-- active user -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Active User</label>
+                            <div class="col-lg-10">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="activeUserRadio" ng-value="1" checked="" name="activeUserRadio1" ng-model="modal.user.Active"> Yes
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="activeUserRadio" id="activeUserRasio2" ng-value="0" ng-model="modal.user.Active"> No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </uib-tab>
+        </uib-tabset>
+        <hr />
+    </div>
+</div>
+<div class="modal-footer ">
+    <button ng-repeat="button in modal.buttons " ng-class="button.classes " ng-click="button.click($event) " ng-bind="button.text " class="btn "></button>
+</div>

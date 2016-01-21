@@ -1,0 +1,90 @@
+<div class="navbar navbar-default absol navbar-static-top" id="main-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand ma-top-m"></a>
+        </div>
+        <div uib-collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+	        
+	        <!-- Login links -->
+	        <ul class="nav navbar-nav navbar-right">
+	            
+	            <!-- Sign up and User greeting -->
+                <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/#/signup')}" class="hidden">
+                	<a href="/signup">Sign up</a>
+                </li>
+                <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/#/login')}">
+                	<a href="/login">Login</a>
+                </li>
+                
+                <li ng-show="isLoggedIn()" class="hidden">
+                	<a href="#">
+	                	<span class="glyphicon glyphicon-user pad-right-s"></span>
+	                	Hello {{ getCurrentUser().name }}
+                	</a>
+                    <p class="navbar-text pad-top-s hidden">
+	                    <span class="glyphicon glyphicon-user pad-right-s"></span>Hello, {{ getCurrentUser().name }}
+	                </p>
+                </li>
+                
+                <!-- Menu -->
+                <li ng-show="isLoggedIn()" uib-dropdown on-toggle="toggled(open)" class="">
+                	<a href id="simple-dropdown" uib-dropdown-toggle class="ma-top-m">
+	                	Menu <i class="fa fa-caret-down pad-left-s fa-1x"></i> 
+					</a>
+                    <ul class="uib-dropdown-menu nested-nav zTop"  aria-labelledby="simple-dropdown">
+                        <li ng-repeat="choice in items2">
+                            <a ng-href="{{ choice.link }}">{{choice.title}}</a>
+                        </li>
+                        <li>
+                        	<a href="/#/settings" class="hidden">
+			                	<span class="glyphicon glyphicon-cog hidden"></span> Setting
+			                </a>
+                        </li>
+                        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}" class="">
+		                	<a href="" ng-click="logout()">Logout</a>
+						</li>
+                    </ul>
+                </li>
+                
+                <!--Logout and Settings -->
+                <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}" class="hidden">
+                	<a href="/#/settings">
+	                	<span class="glyphicon glyphicon-cog"></span>
+	                </a>
+	            </li>
+                <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}" class="hidden">
+                	<a href="" ng-click="logout()">Logout</a>
+				</li>
+            </ul>
+            
+            <!-- MAin Links -->
+            <ul class="nav navbar-nav navbar-right">
+	            
+	            <!-- Home and/or dash -->
+                <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+                    <a ng-href="{{item.link}}">{{item.title}}</a>
+                </li>
+                <li ng-repeat="item in main" ng-class="{active: isActive(item.link)}" class="public-links">
+                    <a ng-href="{{item.link}}">{{item.title}}</a>
+                </li>
+				<li ng-show="isLoggedIn()" ng-class="{active: isActive('/dashboard')}">
+					<a href="/#/dashboard">Dashboard</a>
+				</li>
+                <!-- <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li> -->
+            </ul>
+            <ul class="nav  navbar-nav hidden">
+                <li ng-repeat="item in main" ng-class="{active: isActive(item.link)}" class="public-links">
+                    <a ng-href="{{item.link}}">{{item.title}}</a>
+                </li>
+                <!-- <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li> -->
+                
+            </ul>
+        </div>
+    </div>
+</div>

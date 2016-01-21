@@ -1,0 +1,24 @@
+<!--Test code Button-->
+<button class="btn btn-default" ng-click="launchModal()">MODAL</button>
+<!-- end test Button-->
+<!-- Test code -->
+<div id="rtp-modal" class="modal fade z-top">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="white">&times;</span>
+				</button>
+				<h4 class="modal-title">Error</h4>
+			</div>
+			<div class="modal-body" ng-model="error">
+				<p class="hidden">{{error.current}}</p>
+				<p class="current-error"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary dismiss-error font-noble app-gray" data-dismiss="modal" ng-click="clearModal()">DISMISS</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal-->
+<!-- end test code-->

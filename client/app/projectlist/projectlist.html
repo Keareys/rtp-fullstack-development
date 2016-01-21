@@ -1,0 +1,63 @@
+<section id="projectlist-section">
+    <div class="col-lg-12 projectlist-wrapper">
+        <div class="col-lg-12">
+            <h2 class="dash-headers text-center">
+                Manage Project Lists
+                <div class="inner-line"></div>
+            </h2>
+            <button class="btn btn-warning" ng-click="openProjectList()"><i class="fa fa-outdent"> </i> New List</button>
+            <button class="btn  btn-warning hidden" ng-click="showProjects(name.List_ID)">View</button>
+            <input class="check-list hidden pull-right" type="checkbox" ng-click="showProjects(name.List_ID)">
+        </div>
+        <div class="col-lg-4">
+            <div class="panel list-box">
+                <h3 class="list-header">List</h3>
+                <div class="list-box-wrapper">
+                    <div class="inner-box" ng-repeat="name in listNames" ng-click="setActive($event)">
+                        <div class="inner-text">
+                            <h4>{{ name.List_Name }}</h4>
+                            <p>{{ name.List_Description }}</p>
+                        </div>
+                        <div class="inner-button">
+                            <button class="btn  btn-default" ng-click="showProjects(name.List_ID)"> <i class="fa fa-eye"></i></button>
+                            <button class="btn btn-danger" ng-click="removeList(name.List_ID)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel list-box">
+                <h3 class="list-header">Projects</h3>
+                <div class="projects-list-box-wrapper">
+                    <div class="inner-box" ng-show="isLoading">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <i class="fa fa-spinner fa-pulse fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inner-box animated fadeInUp" ng-repeat="project in projectList">
+                        <span class="number-project">
+                            {{$index + 1}}
+                        </span>
+                        <h4 class="inner-text">{{ project.Project_Title }}</h4>
+                        <div class="div-list ">
+                            <!-- <h4 class="inner-text">{{ project.Project_Title }}</h4> -->
+                            <p class="inner-text">{{ project.Project_Description }}</p>
+                        </div>
+                        <button class="ma-left-m btn btn-danger" ng-click="removeFromList(project.Project_ID, project.List_ID)">
+                            <i class="fa fa-outdent"></i> Remove
+                        </button>
+                        <!--  <button class="btn btn-warning" ng-click="removeFromList(project.Project_ID, project.List_ID)">
+                            <i class="fa fa-glass"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <button class="hidden btn btn-block btn-lg btn-primary">View</button>
+            </div>
+        </div>
+    </div>
+</section>

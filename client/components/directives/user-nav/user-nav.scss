@@ -1,0 +1,59 @@
+#user-nav{
+	opacity: 0;
+	height: 0;
+	background-color: $mainBlue;
+	//border-top: 1px solid $nestedNav;
+	@include transition(all .5s ease-in-out);
+	z-index: 0;
+	&.navbar-default {
+		//border-color: transparent;
+	}
+	&.active{
+		opacity: 1;
+		height: 50px;
+		top: 70px;
+		width: 100%;
+	}
+	.nav{
+		border: none;
+		background-color: transparent;
+		li{
+			background-color: transparent;
+			border: none;
+			a{
+				background-color: transparent;
+				border: none;
+				//color: white;
+				opacity: .8;
+				color: white;
+			}
+			.nav-anchor{
+				padding: {
+					top: 15px;
+					bottom: 10px;
+				}
+			}
+		}
+		.nested-nav{
+			.menu-li{
+				&:hover{
+					background-color: $nestedHover;
+					.menu-items{
+						//color: white;
+					}	
+				}
+				.menu-items{
+					color: $rtpMuted;
+				}
+			}
+		}
+
+	}
+}
+#simple-dropdown{
+	padding: {
+		top: 15px !important;
+		bottom: 10px !important;
+	}
+	background-color: transparent !important;
+}

@@ -1,0 +1,93 @@
+<section class="container grad" id="feedback-section">
+    <div class="col-md-12 hidden">
+        <h2 class="page-header text-center">Submit Feedback</h2>
+    </div>
+    <div class="row feedbackForm">
+        <div class="col-md-8 col-lg-offset-2 feedback-wrapper">
+            <div class="panel panel-primary">
+	            <div class="col-lg-12">
+	                <h3 class="dash-headers text-center">
+	                	Site Help
+	                	<div class="inner-line"></div>
+	            	</h3>
+                </div>
+                <div class="panel-heading hidden">
+                    <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="pad-top-m">
+                        <p class="lead">Please fill out this form in order to provide us with your feedback. If you have any questions, feel free to contact Adam Noelting via email at <a class="lead" href="mailto:anoelting@mtc.ca.gov">anoelting@mtc.ca.gov</a>.
+                        </p>
+                        <br />
+                        <p class="lead">Thank you for your time, and assistance with the development of our updated Projects Website and Database.</p>
+                    </div>
+                    <div class="pad-top-l col-lg-12">
+                        <div class="ma-right-l">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="fullname">Full Name</label>
+                                        <div class="col-md-5">
+                                            <input id="fullname" name="fullname" placeholder="Name" class="form-control input-md" required="" type="text" ng-model="feedBack.fullName">
+                                        </div>
+                                    </div>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="email">Email </label>
+                                        <div class="col-md-5">
+                                            <input id="email" name="email" placeholder="Email " class="form-control input-md" type="text" ng-model="feedBack.email">
+                                        </div>
+                                    </div>
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="page">Feedback Page</label>
+                                        <div class="col-md-5">
+                                            <select id="page" name="page" class="form-control" ng-model="feedBack.page">
+                                                <option value="Login | Registration">Login | Registration</option>
+                                                <option value="Dashboard">Dashboard</option>
+                                                <option value="Feedback">Feedback</option>
+                                                <option value="Import Projects">Import Projects</option>
+                                                <option value="Create Project">Create Project</option>
+                                                <option value="My Projects">My Projects</option>
+                                                <option value="Search Projects">Search Projects</option>
+                                                <option value="My Account">My Account</option>
+                                                <option value="Manage Users">Manage Users</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="category">Category</label>
+                                        <div class="col-md-5">
+                                            <select id="category" name="category" class="form-control" ng-model="feedBack.category">
+                                                <option value="Application Bug">Application Bug</option>
+                                                <option value="Enhancement Request">Enhancement Request</option>
+                                                <option value="User Interface">User Interface</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Textarea -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="comment">Comment</label>
+                                        <div class="col-md-4">
+                                            <textarea class="form-control" id="comment" name="comment" ng-model="feedBack.comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- Button (Double) -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="cancelFeedback"></label>
+                                        <div class="col-md-8">
+                                            <button id="submitFeedback" name="submitFeedback" class="btn btn-success" ng-click="submitFeedback()">Submit</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

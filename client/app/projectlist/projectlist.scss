@@ -1,0 +1,113 @@
+#projectlist-section{
+	width: 90%;
+	margin: 0 auto;
+	padding: {
+		top: 150px;
+	}
+	.projectlist-wrapper{
+		background-color: #FFFFFF;
+		.list-box{
+			margin: {
+				bottom: 50px;
+			}
+			padding:{
+				//bottom: 50px;
+			}
+			.check-list{
+				margin: {
+					top:10px;
+				}
+				@include box-shadow(0px 2px 1px 0px rgba(0, 0, 0, 0.26));
+			}
+			input[type="checkbox"]:after{
+			    width: 50px;
+				height: 50px;
+			}
+			input[type="checkbox"]:checked:after{
+				border-color: $mainBlue;
+				background-color: $mainBlue;
+			}
+			input[type="checkbox"]:checked:before{
+				left: 17px;
+				width: 16px;
+				height: 35px;
+			}
+			.list-header{
+				color: $rtpMuted;
+				background-color: aliceblue;
+				text-align: center;
+				margin: 0;
+				padding: {
+					top: 15px;
+					bottom: 15px;
+				}
+				@include box-shadow(0px 2px 1px 0px rgba(0, 0, 0, 0.26));
+			}
+			.list-box-wrapper{
+				max-height: 400px;
+				height: 400px;
+				overflow: scroll;
+				.inner-box{
+					@include transition(all 1s ease);
+					@include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+					border-left: 5px solid #909090;
+					margin-top: 6px;
+					padding: {
+						bottom: 10px;
+						//top: 10px;
+					}
+					//height: 80px;
+					&:hover{
+						cursor: pointer;
+					}
+					&.active{
+						background-color: $mainBlue;
+					}
+					.number-project{
+						//margin: 25px;
+					    padding:{
+						    left: 15px;
+						    //right: 15px;
+					    }
+					    //background-color: $mainBlue;
+					    font-size: 2em;
+						color: $rtpMuted;
+						border:{
+							right: 5px solid $mainBlue;
+						}
+						vertical-align: middle;
+						//@include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+					}
+					.div-list{
+						width: 800px;
+					    display: inline-block;
+					    vertical-align: top;
+					}
+					.inner-text{
+						display: inline-block;
+						display: inline-block;
+						width: 80%;
+						padding: {
+							left: 10px;
+						}
+					}
+					.inner-button{
+					    display: inline-block;
+					}
+				}
+			}
+			.projects-list-box-wrapper{
+				@extend .list-box-wrapper;
+				.inner-box{
+					&:hover{
+					}
+				}
+			}
+			.btn{
+				padding: {
+					top: 10px;
+				}
+			}	
+		}	
+	}
+}

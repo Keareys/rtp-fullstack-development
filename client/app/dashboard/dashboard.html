@@ -1,0 +1,780 @@
+<section id="new-dash">
+    <!-- ADMIN Main Content  -->
+    <!-- Action Item Panels -->
+    <div class="container animated fadeIn" id="actionPanel">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading hidden">Projects</div>
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <h2 class="dash-headers text-center">
+                            Projects
+                            <div class="inner-line"></div>
+                        </h2>
+                    </div>
+                    <!-- Projects -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-list-ol fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].totalprojects">
+                                            <i class="fa fa-spinner fa-pulse"></i>
+                                        </div>
+                                        <div class="huge" id="dashboardProjects" ng-if="projects[0].totalprojects"> {{ projects[0].totalprojects }}</div>
+                                        <div id="dashboardProjectsText">Total Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Details 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Projects -->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-list-ol fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].totalprojects"> -- </div>
+                                        <div class="huge" id="dashboardProjects" ng-if="projects[0].totalprojects"> {{ projects[0].totalprojects }}</div>
+                                        <div id="dashboardProjectsText">Total Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- CMA Review- -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-green fa fa-clipboard fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].cma_submitted">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashboardCMAReview">{{ projects[0].cma_submitted }}</div>
+                                        <div>CMA Review</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=cma" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Details 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m fa fa-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--CMA Review-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-clipboard fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].cma_submitted"> -- </div>
+                                        <div class="huge" id="dashboardCMAReview">{{ projects[0].cma_submitted }}</div>
+                                        <div>CMA Review</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=cma">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- MTC Review- -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-yellow fa fa-check-circle-o fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].mtc_submitted">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashboardMTCReview" ng-if="projects[0].mtc_submitted">{{ projects[0].mtc_submitted }}</div>
+                                        <div>MTC Review</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=mtc" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Details 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--MTC Review-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-check-circle-o fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].mtc_submitted"> -- </div>
+                                        <div class="huge" id="dashboardMTCReview" ng-if="projects[0].mtc_submitted">{{ projects[0].mtc_submitted }}</div>
+                                        <div>MTC Review</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=mtc">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Performance Review -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-list-ol fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].total_performance">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="performancereview" ng-if="projects[0].total_performance">{{ projects[0].total_performance }}</div>
+                                        <div>Performance Bundled Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/bundles" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Projects
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Performance Review-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-list-ol fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].total_performance"> -- </div>
+                                        <div class="huge" id="performancereview" ng-if="projects[0].total_performance">{{ projects[0].total_performance }}</div>
+                                        <div>Performance Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=performance">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Update Projects</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Performance Review -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-map-marker fa-3x dash-pad"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="mapprojects" ng-if="!projects[0].totalunmapped">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="mapprojects" ng-if="projects[0].totalunmapped"> {{ projects[0].totalunmapped }} </div>
+                                        <div>Unmapped Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=unmapped" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Update Projects
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Map Projects-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-map-marker fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="mapprojects" ng-if="!projects[0].totalunmapped"> -- </div>
+                                        <div class="huge" id="mapprojects" ng-if="projects[0].totalunmapped"> {{ projects[0].totalunmapped }} </div>
+                                        <div>Unmapped Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=unmapped">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Map Projects</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Imported projects -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-red glyphicon glyphicon-import fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].projects_imported">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashboardImportedProjects" ng-if="projects[0].projects_imported">{{ projects[0].projects_imported }}</div>
+                                        <div>Projects Requiring</div>
+                                        <div>Additional Information</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=priority" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Update Now
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--  Imported Projects -->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="glyphicon glyphicon-import fa-4x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!projects[0].projects_imported"> -- </div>
+                                        <div class="huge" id="dashboardImportedProjects" ng-if="projects[0].projects_imported">{{ projects[0].projects_imported }}</div>
+                                        <div>
+                                            <p>Projects Requiring
+                                                <br />Additional Information</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/viewprojects?status=priority">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Update Now</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project Lists -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading hidden">
+	                          
+                                <div class="row ">
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">Lists</div>
+                                        <select style="width:80%" class="form-control" ng-model="listType">
+                                            <option ng-repeat="option in listNames" value="{{option.List_ID}}">{{option.List_Name}}</option>
+                                        </select>
+                                        <a href="/#/viewprojects?listId={{ listType }}" class=" btn btn-default dash-view">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-dedent fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">
+	                                        Lists
+                                        </div>
+                                        <select style="width:80%" class="form-control col-lg-6" ng-model="listType">
+                                            <option ng-repeat="option in listNames" value="{{option.List_ID}}">{{option.List_Name}}</option>
+                                        </select>
+                                        <a href="/#/viewprojects?listId={{ listType }}" class=" btn btn-default dash-view">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/projectlist" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+										Manage Lists
+									</span>
+                                    <span class="pull-right">
+										<i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+									</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading hidden">Messaging </div>
+                <div class="col-lg-12">
+                    <h2 class="dash-headers text-center">
+                        Messaging
+                        <div class="inner-line"></div>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <!-- Unread Messages -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-comments fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!messages[0].totalUnreadMessages">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashMessages" ng-if="messages[0].totalUnreadMessages">{{ messages[0].totalUnreadMessages }}</div>
+                                        <div>Unread Messages</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/messages" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Unread Messages 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Unread Messages-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!messages[0].totalUnreadMessages"> -- </div>
+                                        <div class="huge" id="dashMessages" ng-if="messages[0].totalUnreadMessages">{{ messages[0].totalUnreadMessages }}</div>
+                                        <div>View</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/messages">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Messages</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- System Email -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-envelope fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="systemEmail">0</div>
+                                        <div>System Emails</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/systememail" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Send Email
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--System Email-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-envelope fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="systemEmail">0</div>
+                                        <div>System Emails</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/systememail">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Send Email</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Feedback -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-blue fa fa-envelope fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="feedback">0</div>
+                                        <div>Feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/feedbackreview" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Review 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Who's Online -->
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading hidden">Site Administration</div>
+                <div class="col-lg-12">
+                    <h2 class="dash-headers text-center">
+                        Site Administration
+                        <div class="inner-line"></div>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <!-- Users -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-red fa fa-users fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!membership[0].inactiveusers">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashboardInactiveUsers" ng-if="membership[0].inactiveusers">{{ membership[0].inactiveusers }}</div>
+                                        <div>Inactive Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/useraccount?status=inactive" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Details 
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--  Users -->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-users fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!membership[0].inactiveusers"> -- </div>
+                                        <div class="huge" id="dashboardInactiveUsers" ng-if="membership[0].inactiveusers">{{ membership[0].inactiveusers }}</div>
+                                        <div>Inactive Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/#/useraccount?status=inactive">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Activate Now</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Sessions -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-red fa fa-clock-o fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!sessions[0].totalSessions">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashSessions" ng-if="sessions[0].totalSessions">{{ sessions[0].totalSessions}}</div>
+                                        <div>Inactive Sessions</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="dash-view" ng-click="clearSessions()">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                Clear Sessions
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--  Sessions -->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-users fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!sessions[0].totalSessions"> -- </div>
+                                        <div class="huge" id="dashSessions" ng-if="sessions[0].totalSessions">{{ sessions[0].totalSessions }}</div>
+                                        <div>
+                                            <p>Inactive Sessions</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer" id='clearSessions'>
+                                    <span class="pull-left">Clear Sessions</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Error Log -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading panel-pad">
+                                <div class="row">
+                                    <div class=" col-xs-3">
+                                        <i class="dash-icon dash-red fa fa-exclamation-circle fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!errors[0].totalErrors">
+                                            <i class="fa fa-spinner fa-pulse hidden"></i> --
+                                        </div>
+                                        <div class="huge" id="dashErrors" ng-if="errors[0].totalErrors">{{ errors[0].totalErrors }}</div>
+                                        <div>New Site Errors</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/errorlog" class="dash-view">
+                                <div class="panel-footer text-center">
+                                    <span class="pull-left">
+                                View Log
+                            </span>
+                                    <span class="pull-right">
+                                <i class="pad-left-m glyphicon glyphicon-chevron-right"></i>
+                            </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Error Log-->
+                    <div class="col-lg-3 col-md-6 hidden">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-exclamation-circle fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" ng-if="!errors[0].totalErrors"> -- </div>
+                                        <div class="huge" id="dashErrors" ng-if="errors[0].totalErrors">{{ errors[0].totalErrors }}</div>
+                                        <div>New Site Errors</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/errorlog">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Log</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Whos online -->
+                    <div class="col-lg-6">
+                        <div class="dash-panel">
+                            <div class="panel-heading dash-online">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class=" col-xs-3 online-icon">
+                                            <i class="dash-icon dash-green fa fa-rss fa-3x"></i>
+                                        </div>
+                                        <h3 class="pad-top-s">Who's Online?</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div ng-repeat="index in activeSessions">
+                                    <div class="repeater-wrapper">
+                                        <div class="active-wrapper">
+                                            <span class="text-muted">{{ index }}</span>
+                                            <span class="pull-right active-text">
+                                    <i class="fa fa-check"></i> Active
+                                </span>
+                                        </div>
+                                        <div class="divider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  <div class="col-lg-6">
+                <div class="dash-panel">
+                    <div class="panel-heading dash-online">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Another Panel</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="repeater-wrapper">
+                            <div class="active-wrapper">
+                                <span class="text-muted">Gfrasuto@mtc.ca.gov</span>
+                                <span class="pull-right active-text">
+                                    <i class="fa fa-check"></i> Active
+                                </span>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+                    <div class="col-md-4 hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="text-muted">Who's Online?</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table id="onlineJsonTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

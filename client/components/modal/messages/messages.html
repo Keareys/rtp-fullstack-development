@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+    <p ng-if="modal.text" ng-bind="modal.text"></p>
+    <div ng-if="modal.html" ng-bind-html="modal.html"></div>
+    <div class="">
+        <!-- Load existing messages  -->
+        <div id="messageBody" class="newMessageBody" ng-hide="modal.sendMessageMode === true">
+            <div class="">
+                <div class="messageWrapper">
+                    <div ng-if="messageList" ng-repeat="message in messageList" class="col-lg-12 borderBottomMsg msg2 pad-top-l">
+                        <div class="col-lg-2 messageIcon"><i class="fa fa-envelope-o fa-4x ma-top-s ma-right-l"></i></div>
+                        <div class="msg col-lg-10"> {{ message.To_User }}</div>
+                        <div class="lead pad-bottom-s  msg2 pad-top-m col-lg-10"> {{ message.Message_Text }}</div>
+                        <div class="pad-bottom-m msg2 col-lg-10 msgDate"> <i class="glyphicon glyphicon-time fa-1x"></i> {{ message.Message_Date | date:'medium'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Send new message  -->
+        <div id="sendMessageBody" class="newMessageSend" ng-show="modal.sendMessageMode === true">
+            <form id="messageContactForm" class="form-horizontal">
+                <fieldset>
+                    <legend></legend>
+                    <!-- Agency -->
+                    <div class="form-group">
+                        <label for="messageContact" class="col-lg-2 control-label">To</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="messageContact" name="messageContact" required ng-model="newMessage.toUser">
+                                <option ng-repeat="contact in contactList" value="{{ contact.Email }}">{{ contact.text }}</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="messageContents" class="col-lg-2 control-label">Message</label>
+                        <div class="col-lg-8">
+                            <textarea class="form-control" id="messageContents" name="messageContents" rows="2" placeholder="Message" required="" ng-model="newMessage.message"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10" style="text-align: right">
+                            <button class="btn btn-primary" ng-click="sendMessage()"> Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-lg-12 newMessageBody">
+        <button type="button" class="btn btn-primary btn-lg btn-block col-lg-12 newMessageCreateBtn" ng-hide="modal.sendMessageMode === true" ng-click="addNewMessage()">
+            <i class="fa fa-comment-o fa-1x ma-right-l"></i> New Message
+        </button>
+    </div>
+</div>
