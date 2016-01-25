@@ -1,0 +1,128 @@
+<section id="viewprojects-section">
+    <!-- insert Navigation -->
+    <!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+    <div class="viewproject-wrapper container">
+        <div style="padding-bottom:10px" class="hidden">
+            <h3 class="hidden" style="color:#01aeef"> {{ pageTitle }}</h3>
+            <!--            <button ng-hide="viewMode === true || editMode === true || mapMode === true" class="btn btn-success" ng-click="reloadProjects()"><i class="fa fa-refresh"></i> Reload Projects</button> -->
+            <a ui-sref="viewprojectsnew" ng-click="resetMode()">
+                <button ng-show="viewMode === true || editMode === true || mapMode === true" class="btn btn-default"> Back to Projects</button>
+            </a>
+            <!-- View Mode -->
+            <!--
+            <button class="btn btn-warning" ng-show="viewMode === true" ng-click="openStatusModal()"><i class="fa fa-trash-o"> </i> Change Status</button>
+            <button class="btn btn-primary" ng-show="mapMode === true || viewMode === true" ng-click="openMessageModal()"><i class="fa fa-envelope"> </i> Message</button>
+            <button class="btn btn-default" ng-show="viewMode === true"><i class="fa fa-trash-o"> </i> Print</button>
+            -->
+            <!-- End view mode -->
+            <!-- Edit Mode -->
+            <!--
+            <button class="btn btn-primary" ng-show="editMode === true"><i class="fa fa-trash-o"> Save Progress</i></button>
+            <button class="btn btn-warning" ng-show="editMode === true"><i class="fa fa-trash-o"> Discard</i></button>
+            -->
+            <!-- End edit mode -->
+            <!-- Map Mode -->
+            <!-- End map mode -->
+        </div>
+        <div ui-view="project-content" class="view-content col-lg-12">
+            <h3 class="dash-headers text-center">
+                {{ pageTitle }}
+                <div class="inner-line"></div>
+            </h3>
+            <div class="button-wrappers">
+                <button ng-hide="viewMode === true || editMode === true || mapMode === true" class="btn btn-success" ng-click="reloadProjects()"><i class="fa fa-refresh"></i> Reload Projects</button>
+                <button class="btn btn-warning" ng-click="openProjectList()"><i class="fa fa-outdent"> </i> New List</button>
+            </div>
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table view-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th st-sort="Project_Title">Title</th>
+                        <th st-sort="Sponsor_Agency">Sponsor</th>
+                        <th st-sort="County">County</th>
+                        <th st-sort="Total_Cost_2017">Total Cost</th>
+                        <th st-sort="Sponsor_Status">Status</th>
+                        <th>Tools</th>
+                    </tr>
+                    <tr class="">
+                        <th colspan="7">
+                            <input st-search="" class="form-control" placeholder="Global Search ..." type="text" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            <input st-search="Project_Title" placeholder="search projects" class="input-sm form-control" type="search" />
+                        </th>
+                        <th>
+                            <input st-search="Sponsor_Agency" placeholder="search sponsors" class="input-sm form-control" type="search" />
+                        </th>
+                        <th>
+                            <input st-search="County" placeholder="search counties" class="input-sm form-control" type="search" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-show="!isLoading">
+                    <tr ng-repeat="row in displayedCollection" ng-class="{rowSelection: select, rowImportant: row.Sponsor_Status == 'Needs Information CMA' || row.Sponsor_Status == 'Needs Information'}">
+                        <td>
+                            <input type="checkbox" ng-click="noSelected(select, row)" ng-model="select" />
+                        </td>
+                        <td>{{row.Project_Title}}</td>
+                        <td>{{row.Sponsor_Agency}}</td>
+                        <td>{{row.County}}</td>
+                        <td>{{row.Total_Cost_2017 | currency}}</td>
+                        <td>{{row.Sponsor_Status}}</td>
+                        <td style="width:300px; text-align: right">
+                            <button class="btn btn-default btn-fixer" ng-click="getProjectDetail(row.Project_ID,'view')"><i class="fa fa-eye"></i> </button>
+                            <button class="btn btn-default btn-fixer" ng-click="getProjectDetail(row.Project_ID,'edit')"><i class="fa fa-pencil"></i> </button>
+                            <button ng-if="row.Total_Messages > 0" class="btn btn-default btn-fixer" ng-click="showMessages(row.Project_ID)"><i class="fa fa-comment"></i> </button>
+                            <button ng-if="row.Status_Count > 0" class="btn btn-default btn-fixer" ng-click="showHistory(row.Project_ID)"><i class="fa fa-history"></i> </button>
+                            <button ng-if="row.Mapping_Status === 'Not Yet Mapped' || !row.Mapping_Status" class="btn btn-danger btn-fixer-delete" ng-click="mapProject(row.Project_ID,true, row.Tool_Type)"><i class="fa fa-map-marker"></i> </button>
+                            <button ng-if="row.Mapping_Status === 'Needs Confirmation'" class="btn btn-warning btn-fixer-delete" ng-click="mapProject(row.Project_ID)"><i class="fa fa-map-marker"></i> </button>
+                            <button ng-if="row.Mapping_Status === 'Requires Revision'" class="btn btn-warning btn-fixer-delete" ng-click="mapProject(row.Project_ID)"><i class="fa fa-map-marker"></i> </button>
+                            <button ng-if="row.Mapping_Status === 'Mapped'" class="btn btn-success btn-fixer-delete" ng-click="mapProject(row.Project_ID)"><i class="fa fa-map-marker"></i> </button>
+                            <button ng-if="row.Mapping_Status === 'Not Mappable'" class="btn btn-fixer-muted" ng-click="mapProject(row.Project_ID)"><i class="fa fa-map-marker"></i> </button>
+                            <button class="btn btn-danger btn-fixer-delete" ng-if="isList" ng-click="removeFromList(row.Project_ID)"><i class="fa fa-outdent"></i> </button>
+                            <button class="btn btn-success btn-fixer-delete" ng-if="!isList" ng-click="addToList(row.Project_ID, row.Project_Title)"><i class="fa fa-outdent"></i> </button>
+                            <button class="btn btn-danger btn-fixer-delete" ng-click="removeAgency(row.Project_ID)"><i class="fa fa-trash-o"></i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody ng-show="isLoading">
+                    <tr>
+                        <td colspan="6" class="text-center"> <i class="fa fa-spinner fa-pulse fa-3x"></i> </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <pagination></pagination>
+                            <div st-items-by-page="20" st-pagination="" st-template="app/viewprojectsnew/templates/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- Modals -->
+<!-- Status Timeline Modal -->
+<div class="modal fade bs-example-modal-lg" id="statusChangeModal" tabindex="-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalExitFixer modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close btn btn-default" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-1x"></i></button> -->
+                <button type="button" class="close resetMessage" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title borderBottom pad-bottom-m">Status Messages</h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div id="messageBody" class="newMessageBody">
+                        <div class="col-md-12 statusMessageWrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

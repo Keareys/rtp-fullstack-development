@@ -1,0 +1,830 @@
+<div class="col-lg-12">
+    <h2 class="dash-headers text-center">
+        {{ projectDetails[0].Project_Title }}: View Mode
+        <div class="inner-line"></div>
+    </h2>
+</div>
+<div class="button-wrappers">
+    <a ui-sref="viewprojectsnew" ng-click="resetMode()">
+        <button class="btn btn-default"> Back to Projects</button>
+    </a>
+    <button class="btn btn-warning" ng-click="openStatusModal()"><i class="fa fa-trash-o"> </i> Change Status</button>
+    <button class="btn btn-primary" ng-click="openMessageModal()"><i class="fa fa-envelope"> </i> Message</button>
+    <button class="btn btn-default"><i class="fa fa-trash-o"> </i> Print</button>
+    <!-- End view mode -->
+    <!-- Edit Mode -->
+    <button class="btn btn-primary"><i class="fa fa-trash-o"> Save Progress</i>
+    </button>
+    <button class="btn btn-warning"><i class="fa fa-trash-o"> Discard</i>
+    </button>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading hidden">
+        <h4 class="panel-title">{{ projectDetails[0].createTitle }}</h4>
+    </div>
+    <div class="col-lg-12">
+        <form id="createProject" class="form-horizontal" novalidate>
+            <uib-tabset class="tabs-left">
+                <!-- General information -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">1</span>
+                        <i class="fa fa-info"></i> General Information
+                    </uib-tab-heading>
+                    <!--CONTENT FIELDSET -->
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!--print headers -->
+                        <!-- <h4 class="page-header printHeaders">General Information</h4> -->
+                        <!-- Title -->
+                        <!-- <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                General Information
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createTitle" class="control-label">
+                                    Title
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please provide a brief title of the project/program. The title should indicate what the project/program is and NOT what the project/program does. (i.e. Main Street Bus Rapid Transit (NOT Implement Bus Rapid Transit on Main Street)"></i>
+                                </label>
+                                <textarea class="form-control" id="createTitle" name="createTitle" rows="2" data-parsley-maxlength="150" placeholder="Title" required="" data-parsley-group="block1" ng-model="projectDetails[0].Project_Title"></textarea>
+                            </div>
+                        </div>
+                        <!-- Description -->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createDescription" class="control-label">
+                                    Project Description
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please provide a brief description of the project/program, including location, limits and scope of work. This is where you can describe what the project/program does. (i.e., This project will implement BRT from City A to City B. The project will operate along Main Street from Point A to Point B) Note: large expansion projects will be asked to provide additional information to enable MTC staff to model the project."></i>
+                                </label>
+                                <textarea class="form-control" id="createDescription" name="createDescription" rows="8" data-parsley-maxlength="150" placeholder="Title" required="" data-parsley-group="block1" ng-model="projectDetails[0].Project_Description"></textarea>
+                            </div>
+                        </div>
+                        <!-- County -->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createCounty" class="control-label">
+                                    County
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please select the county in which the project/program is located. If the project/program is located in more than one county, please select “Regional.”"></i>
+                                </label>
+                                <div id="createCounty" style="padding-top:7px"> {{ projectDetails[0].County || "Data"}} </div>
+                            </div>
+                        </div>
+                        <!-- Sponsor -->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createSponsorCode" class="control-label">
+                                    Sponsor Agency
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the agency that is serving as project/program sponsor."></i>
+                                </label>
+                                <div id="createSponsorCode" style="padding-top:7px"> {{ projectDetails[0].Sponsor_Agency || "Data"}} </div>
+                            </div>
+                        </div>
+                        <!-- Operator -->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createOperatorCode" class="control-label">
+                                    Operating Agency
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the agency that will operate the facility once construction/procurement is complete."></i>
+                                </label>
+                                <div id="createOperatorCode" style="padding-top:7px"> {{ projectDetails[0].Operating_Agency || "Data" }} </div>
+                            </div>
+                        </div>
+                        <!-- Implementing-->
+                        <div class="form-group col-lg-12">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createImplementCode" class="control-label">
+                                    Implementing Agency
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the agency that will implement/construct the project/program."></i>
+                                </label>
+                                <div id="createImplementCode" style="padding-top:7px"> {{ projectDetails[0].Implementing_Agency || "Data" }} </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+                <!-- Project type -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">2</span>
+                        <i class="fa fa-th-list"></i> Project Type
+                    </uib-tab-heading>
+                    <!--CONTENT FIELDSET -->
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!-- <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Project Type
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <!--print headers -->
+                        <!-- <h4 class="page-header printHeaders">Project Type</h4> -->
+                        <!-- Investment Type -->
+                        <div class="form-group" style="padding-top:20px">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createInvest" class="control-label">Investment Type:</label>
+                                <div id="createInvest" style="padding-top:7px"> {{ projectDetails[0].Committed_Flag || "Data" }} </div>
+                            </div>
+                        </div>
+                        <!-- System -->
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createSystem" class="control-label">System:</label>
+                                <div id="createSystem" style="padding-top:7px"> {{ projectDetails[0].Transportation_System || "Data" }} </div>
+                            </div>
+                        </div>
+                        <!-- Class/ Project Purpose -->
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createClass" class="control-label">Project Purpose:</label>
+                                <div id="createClass" style="padding-top:7px"> {{ projectDetails[0].Project_Purpose || "Data" }} </div>
+                            </div>
+                        </div>
+                        <!-- Project Category -->
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createCategory" class="control-label">Project Category:</label>
+                                <div id="createCategory" style="padding-top:7px"> {{ projectDetails[0].Project_Type || "Data" }} </div>
+                            </div>
+                        </div>
+                        <!-- Type -->
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-1">
+                                <label for="createType" class="control-label">Type:</label>
+                                <div id="createType" style="padding-top:7px"> {{ projectDetails[0].Programmatic_Flag || "Data" }} </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+                <!-- Cost and schedule -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">3</span>
+                        <i class="fa fa-money"></i> Cost & Schedule
+                    </uib-tab-heading>
+                    <!--CONTENT FIELDSET -->
+                    <fieldset id="simpleCostCard" ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!-- <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Cost & Schedule
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <!--print headers -->
+                        <h4 class="page-header printHeaders hidden">Cost & Schedule</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Certified Environmental DOC Date -->
+                                <div class="form-group removedDOC">
+                                    <div class="col-lg-6 col-lg-offset-1">
+                                        <label for="createEnvDocDate" class="control-label">
+                                            Environmental Documentation
+                                            <br> Certification Date (Actual/estimated)
+                                        </label>
+                                        <div id="createEnvDocDate" style="padding-top:7px"> {{ projectDetails[0].Certified_Env_Doc_Date || "Unavailable" }} </div>
+                                    </div>
+                                </div>
+                                <!-- Capital Cost -->
+                                <div class="form-group ma-top-l">
+                                    <div class="col-lg-6 col-lg-offset-1 forTotalCostRow">
+                                        <div class="input-group ">
+                                            <label for="createCaptialCost" class=" control-label">
+                                                Capital Cost
+                                            </label>
+                                            <span> $ (M)</span>
+                                            <!-- <span class="input-group-addon">$ (M)</span> -->
+                                            <div id="createCaptialCost" style="padding-top:7px"> {{ projectDetails[0].Cost_Capital || "Data" }} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- O&M Cost -->
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-1 forTotalCostRow">
+                                        <label for="createOmCost" class="control-label">
+                                            O&M Cost
+                                        </label>
+                                        <span> $ (M)</span>
+                                        <div class="input-group">
+                                            <div id="createOmCost" style="padding-top:7px"> {{ projectDetails[0].Cost_OM }} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Total Cost -->
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-1">
+                                        <label for="createTotalCostSimple" class="control-label">Total Cost (2017$)</label>
+                                        <span>$ (M)</span>
+                                        <div id="createTotalCostSimple" style="padding-top:7px"> {{ projectDetails[0].Total_Cost_2017 || "Data" }} </div>
+                                    </div>
+                                </div>
+                                <!-- Construction Start and End Date -->
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-1">
+                                        <label for="createStartDateCon" class="control-label">
+                                            Construction Start
+                                            <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please provide the first year of project construction (actual/estimated). For county-, region- or system-wide programs, please provide the first year the program will be implemented."></i>
+                                        </label>
+                                        <div id="createStartDateCon" style="padding-top:7px"> {{ projectDetails[0].Construction_Start_Year || "DATA"}} </div>
+                                    </div>
+                                </div>
+                                <!-- O&M Start and End Date -->
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-1">
+                                        <label for="createStartDateOm" class="control-label">
+                                            Construction End (O&M Start)
+                                        </label>
+                                        <div id="createStartDateOm" style="padding-top:7px"> {{ projectDetails[0].OM_Start_Year || "Data"}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Class Breakdown  User Benefit Type -->
+                                <div class="form-group borderTop pad-bottom-m" id="userClass">
+                                    <label class="control-label">Estimated Benefit by Mode</label>
+                                    <!-- <h5 class="col-lg-12 dash-headers text-center"></h5> -->
+                                    <!-- Auto -->
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            <label class="control-label" for="classAuto">Auto</label>
+                                            <div id="classAuto" style="padding-top:7px"> {{ projectDetails[0].User_Benefit_Share_Auto || "DATA"}}<span>%</span> </div>
+                                        </div>
+                                    </div>
+                                    <!-- Transit -->
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            <label class="control-label" for="classTransit">Transit</label>
+                                            <div id="classTransit" style="padding-top:7px"> {{ projectDetails[0].User_Benefit_Share_Transit || "DATA"}}<span>%</span> </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bike -->
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            <label class="control-label" for="classBike">Bike</label>
+                                            <div id="classBike" style="padding-top:7px"> {{ projectDetails[0].User_Benefit_Share_Bike || "DATA"}}<span>%</span> </div>
+                                        </div>
+                                    </div>
+                                    <!-- Pedestrian -->
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            <label class="control-label" for="classPedestrian">Pedestrian</label>
+                                            <div id="classPedestrian" style="padding-top:7px"> {{ projectDetails[0].User_Benefit_Share_Pedestrian || "DATA"}}<span>%</span> </div>
+                                        </div>
+                                    </div>
+                                    <!-- Freight -->
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            <label class="control-label" for="classFreight">Freight</label>
+                                            <div id="classFreight" style="padding-top:7px"> {{ projectDetails[0].User_Benefit_Share_Freight }}<span>%</span> </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-12 text-center"> -->
+                                    <!-- <div class="col-lg-2 col-lg-offset-1 classBreakDown">
+                                            <label class="control-label" for="classAuto">Auto</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control classUsage" id="classAuto" name="classAuto" required="" data-parsley-group="block2" ng-model="projectDetails[0].classAuto">
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 classBreakDown">
+                                            <label class="control-label" for="classTransit">Transit</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control classUsage" id="classTransit" name="classTransit" required="" data-parsley-group="block2" ng-model="projectDetails[0].classTransit">
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 classBreakDown">
+                                            <label class="control-label" for="classBike">Bike</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control classUsage" id="classBike" name="classBike" required="" data-parsley-group="block2" ng-model="projectDetails[0].classBike">
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 classBreakDown">
+                                            <label class="control-label" for="classPedestrian">Pedestrian</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control classUsage" id="classPedestrian" name="classPedestrian" required="" data-parsley-group="block2" ng-model="projectDetails[0].User_Benefit_Share_Pedestrian">
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 classBreakDown">
+                                            <label class="control-label" for="classFreight">Freight</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control classUsage" id="classFreight" name="classFreight" required="" data-parsley-group="block2" ng-model="projectDetails[0].User_Benefit_Share_Freight">
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div> -->
+                                    <!--  <div class="col-lg-1">
+                                    <label class="control-label" for="classTotal">Total</label>
+                                    <input type="text" class="form-control classUsage" id="classTotal" name="classTotal" readonly value="0%" required="100%" data-parsley-group="block2" data-parsley-equalto="#classzTotal" data-parsley-error-message="Must Equal 100%" ng-model="projectDetails[0].classTotal">
+                                </div> -->
+                                    <!-- </div> -->
+                                </div>
+                                <!--Hidden validation total -->
+                                <div class="col-lg-2 hidden">
+                                    <input type="text" class="form-control classUsage" id="classzTotal" name="classzTotal" readonly value="100%">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+                <!-- Funding -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">4</span>
+                        <i class="fa fa-credit-card"></i> Funding
+                    </uib-tab-heading>
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!--  <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Funding
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <!--print headers -->
+                        <!-- fund -->
+                        <!-- Committed funding -->
+                        <div class="form-group col-lg-12 ma-top-l hidden">
+                            <h4 class="col-lg-12 page-header">Committed Funding</h4>
+                        </div>
+                        <!-- Discretionary Funding-->
+                        <div class="form-group col-lg-12 ma-top-l">
+                            <h4 class="col-lg-12 page-header hidden">
+                                Discretionary Funding
+                                <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the potential fund sources and dollar amounts for any additional discretionary funds that are needed to complete this project's funding plan."></i>
+                            </h4>
+                            <h3 class="col-lg-12 dash-headers page-header text-center">
+                                Discretionary Funding
+                                <i class="fa fa-info-circle pad-left-s hidden" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the potential fund sources and dollar amounts for any additional discretionary funds that are needed to complete this project's funding plan."></i>
+
+                            </h3>
+                        </div>
+                        <div class="col-md-11">
+                            <table class="table table-striped table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-center">Fund Source</th>
+                                        <th class="text-center">Amount (YOE$ (M))</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- 1 -->
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <label for="createDiscretionarySource2" class="col-lg-2 control-label">1</label>
+                                        </td>
+                                        <td class="col-lg-4">
+                                            OneBayArea Grant
+                                            <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please coordinate your requests with your CMA to identify the amount of funds that will be requested. Anticipated Local Discretionary Funds refers to revenues from possible new local/county revenue measures under consideration for implementation before the adoption of the Plan in 2017."></i>
+                                            <input type="text" class="form-control hidden" id="createDiscretionarySource2" tabindex="-1" name="createDiscretionarySource2" readonly value="OneBayArea Grant" required="" data-parsley-group="block3">
+                                        </td>
+                                        <td class="col-lg-4 uncommitRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control fundsUncommitInput fundValueInput" id="createDiscretionary2" name="createDiscretionary2" placeholder="Discretionary" required="" data-parsley-group="block3" ng-model="projectDetails[0].Discretionary_Funds_OneBayArea" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 2 -->
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <label for="createDiscretionarySource3" class="col-lg-2 control-label">2</label>
+                                        </td>
+                                        <td class="col-lg-4">
+                                            Regional Transportation Improvement Program (RTIP)
+                                            <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please coordinate your requests with your CMA to identify the amount of funds that will be requested. Anticipated Local Discretionary Funds refers to revenues from possible new local/county revenue measures under consideration for implementation before the adoption of the Plan in 2017."></i>
+                                            <input class="form-control hidden" id="createDiscretionarySource3" readonly tabindex="-1" name="createDiscretionarySource3" value="Regional Transportation Improvement Program (RTIP)" required="" data-parsley-group="block3">
+                                        </td>
+                                        <td class="col-lg-4 uncommitRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control fundsUncommitInput fundValueInput" id="createDiscretionary3" name="createDiscretionary3" placeholder="Discretionary" required="" data-parsley-group="block3" ng-model="projectDetails[0].Discretionary_Funds_RTIP" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 3 -->
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <label for="createDiscretionarySource4" class="col-lg-2 control-label">3</label>
+                                        </td>
+                                        <td class="col-lg-4">
+                                            Anticipated Local Discretionary Funds
+                                            <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please coordinate your requests with your CMA to identify the amount of funds that will be requested. Anticipated Local Discretionary Funds refers to revenues from possible new local/county revenue measures under consideration for implementation before the adoption of the Plan in 2017."></i>
+                                            <input class="form-control hidden" id="createDiscretionarySource4" tabindex="-1" name="createDiscretionarySource4" value="Anticipated Local Discretionary Funds" required="" readonly data-parsley-group="block3">
+                                        </td>
+                                        <td class="col-lg-4 uncommitRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control fundsUncommitInput fundValueInput" id="createDiscretionary4" name="createDiscretionary4" placeholder="Discretionary" required="" data-parsley-group="block3" ng-model="projectDetails[0].Discretionary_Funds_AnticipatedLocal" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 4 -->
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <label for="createDiscretionarySource1" class="col-lg-2 control-label">4</label>
+                                        </td>
+                                        <td class="col-lg-4">
+                                            Regional Discretionary Funds
+                                            <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify your request for other regional discretionary funds."></i>
+                                            <input class="form-control hidden" id="createDiscretionarySource1" tabindex="-1" name="createDiscretionarySource1" value="Regional Discretionary Funds" readonly required="" data-parsley-group="block3">
+                                        </td>
+                                        <td class="col-lg-4 uncommitRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control fundsUncommitInput fundValueInput" id="createDiscretionary1" name="createDiscretionary1" placeholder="Discretionary" required="" data-parsley-group="block3" ng-model="projectDetails[0].Discretionary_Funds_Regional" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="createTotalDisCostGrid" class="col-lg-5 control-label">Total Discretionary Funding (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control number" id="createTotalDisCostGrid" name="createTotalDisCostGrid" readonly placeholder="Total Discretionary Funding" required="" data-parsley-group="block3" ng-model="projectDetails[0].Total_Discretionary_Funding" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fund -->
+                        <!-- Committed Funding-->
+                        <div class="form-group col-lg-12 ma-top-l">
+                            <h4 class="col-lg-12 page-header hidden">
+                                Committed Funding
+                               </h4>
+                            <h3 class="col-lg-12 dash-headers page-header text-center">
+                               Committed Funding
+                                <i class="fa fa-info-circle pad-left-s hidden" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the potential fund sources and dollar amounts for any additional discretionary funds that are needed to complete this project's funding plan."></i>
+
+                            </h3>
+                        </div>
+                        <div class="col-md-11">
+                            <table class="table table-striped table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-center">Fund Source</th>
+                                        <th class="text-center">Amount (YOE$ (M))</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- 1 -->
+                                    <tr ng-repeat="funds in projectCommittedFunding">
+                                        <td class="col-lg-2">
+                                            <label for="createDiscretionarySource2" class="col-lg-2 control-label">{{ $index + 1 }}</label>
+                                        </td>
+                                        <td class="col-lg-4">
+                                            {{ funds.Commit_Fund_Source }}
+                                            <input type="text" class="form-control hidden" id="createDiscretionarySource2" tabindex="-1" name="createDiscretionarySource2" readonly value="OneBayArea Grant" required="" data-parsley-group="block3">
+                                        </td>
+                                        <td class="col-lg-4 uncommitRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control fundsUncommitInput fundValueInput" id="createDiscretionary2" name="createDiscretionary2" placeholder="Discretionary" required="" data-parsley-group="block3" ng-model="funds.Commit_Fund_Amt" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="createTotalDisCostGrid" class="col-lg-5 control-label">Total Committed Funding (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control number" id="createTotalDisCostGrid" name="createTotalDisCostGrid" readonly placeholder="Total Discretionary Funding" required="" data-parsley-group="block3" ng-model="projectDetails[0].Total_Committed_Funding" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end committed funding -->
+                        <div class="form-group col-lg-12 hidden">
+                            <h4 class="col-lg-12 page-header">Total Funding Year of Expenditure (YOE$)</h4>
+                        </div>
+                        <h3 class="col-lg-12 dash-headers page-header text-center">
+                            Total Funding Year of Expenditure (YOE$)
+                        </h3>
+                        <!-- Prior 2017 Funnding-->
+                        <div class="form-group col-lg-12">
+                            <label for="createPriorFund" class="col-lg-5 control-label">
+                                Prior 2017 Funding
+                                <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Prior 2017 funding refers to funds committed to the project/program total cost that were programmed in a fiscal year prior to FY 2016-17."></i>
+                            </label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control fundValueInput" id="createPriorFund" name="createPriorFund" placeholder="Prior Funding" required="" data-parsley-group="block3" ng-model="projectDetails[0].Prior_2017_Funding" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total Discretionary Funding-->
+                        <div class="form-group col-lg-12">
+                            <label for="createTotalDisCost" class="col-lg-5 control-label">Total Discretionary Funding (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control number fundValueInput" id="createTotalDisCost" name="createTotalDisCost" readonly placeholder="Total Discretionary Funding" required="" data-parsley-group="block3" ng-model="projectDetails[0].Total_Discretionary_Funding" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total Committed Cost-->
+                        <div class="form-group col-lg-12">
+                            <label for="createTotalCommitCost" class="col-lg-5 control-label">Total Committed Funding (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control number fundValueInput" id="createTotalCommitCost" readonly name="createTotalCommitCost" placeholder="Total Funding" required="" data-parsley-group="block3" ng-model="projectDetails[0].Total_Committed_Funding" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total funding value-->
+                        <div class="form-group col-lg-12 borderTop pad-top-l">
+                            <label for="createTotalFundingValue" class="col-lg-5 control-label">Total Funding Value (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control number" id="createTotalFundingValue" readonly name="createTotalFundingValue" placeholder="Total Funding Value" required="" data-parsley-group="block3" data-parsley-equalto="#createTotalCostFunding" data-parsley-error-message="Total Funding Value must be equal to Total Cost(YOE)" value="{{ projectDetails[0].Total_Committed_Funding + projectDetails[0].Total_Discretionary_Funding }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total Cost-->
+                        <div class="form-group col-lg-12">
+                            <label for="createTotalCostFunding" class="col-lg-5 control-label">Total Cost (YOE$)</label>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$ (M)</span>
+                                    <input type="text" class="form-control" id="createTotalCostFunding" readonly name="createTotalCostFunding" placeholder="Total Cost" required="" data-parsley-group="block3" ng-model="projectDetails[0].Total_Cost_YOE" />
+                                </div>
+                                <!-- <button id="calculateFunding" type="button" class="btn btn-default">Calculate</button> -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+                <!-- Modeling details -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">5</span>
+                        <i class="fa fa-road"></i> Modeling Details
+                    </uib-tab-heading>
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Modeling Details
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div>
+                        <!-- <legend>Modeling Details</legend> -->
+                        <!-- // print headers -->
+                        <!-- <h4 class="page-header printHeaders">Modeling Details</h4> -->
+                        <!-- // for print mode only -->
+                        <h4 class="page-header">Detailed Project Description</h4>
+                        <!-- Upload Note -->
+                        <!--Add or cancel -->
+                        <!--   Upload Grid -->
+                        <h4 class="page-header">Modeling Files</h4>
+                        <table class="display table table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Download File</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="!modelingFiles">
+                                    No files available.
+                                </tr>
+                                <tr ng-if="modelingFiles" ng-repeat="files in modelingFiles">
+                                    <td>
+                                        {{ files.Original_File_Name }}
+                                    </td>
+                                    <td>
+                                        <a ng-href="{{ files.Modeling_File_Path }}" target="_self">
+                                            <button class="btn btn-primary"> Download</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </uib-tab>
+                <!-- Detailed cost -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">6</span>
+                        <i class="fa fa-calendar"></i> Detailed Cost & Schedule
+                    </uib-tab-heading>
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!--  <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Detailed Cost & Schedule
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <!-- <legend>Detailed Cost & Schedule</legend> -->
+                        <!-- // print headers -->
+                        <!-- <h4 class="page-header printHeaders hidden">Detailed Cost & Schedule</h4> -->
+                        <h3 class="col-lg-12 dash-headers page-header text-center">
+                                Detailed Cost & Schedule
+                                <i class="fa fa-info-circle pad-left-s hidden" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the potential fund sources and dollar amounts for any additional discretionary funds that are needed to complete this project's funding plan."></i>
+
+                        </h3>
+                        <!-- // for print mode only -->
+                        <div class="col-md-11">
+                            <h4 id="deatilCostAlert" class="lead  borderBottomAlert hidden">Projects Under $100,000,000 are not required to submit a Detailed Cost & Schedule </h4>
+                            <table id="detailTable" class="table table-striped table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Detail</th>
+                                        <th class="text-center">Start Year</th>
+                                        <th class="text-center">End Year</th>
+                                        <th class="text-center">Cost (2017$)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Env -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createEnvCost" class="col-lg-2 control-label">Environmental/ Design</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <div>
+                                                <input type="text" class="form-control detailCostHide capInput" id="createStartDateEnv" data-parsley-type="digits" maxlength="4" name="createStartDateEnv" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Env_Start_Year">
+                                            </div>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <div>
+                                                <input type="text" class="form-control detailCostHide capInput" id="createEndDateEnv" name="createEndDateEnv" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Env_End_Year">
+                                            </div>
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide capInput" id="createEnvCost" name="createEnvCost" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_Env" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Row -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createRowCost" class="col-lg-2 control-label">Right-of-Way(ROW).</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <div>
+                                                <input type="text" class="form-control detailCostHide" id="createStartDateRow" name="createStartDateRow" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].ROW_Start_Year">
+                                            </div>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <div>
+                                                <input type="text" class="form-control detailCostHide" id="createEndDateRow" name="createEndDateRow" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].ROW_End_Year">
+                                            </div>
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide capInput" id="createRowCost" name="createRowCost" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_ROW" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Construct -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createConCostDetail" class="col-lg-2 control-label">Construction</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createStartDateConDetail" name="createStartDateConDetail" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" data-parsley-error-message="Must Equal to Construction Start on Cost & Schedule" ng-model="projectDetails[0].Construction_Start_Year_DET">
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createEndDateConDetail" name="createEndDateConDetail" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Construction_End_Year_DET">
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide capInput" id="createConCostDetail" name="createConCostDetail" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_Construction" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Rolling -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createRollingCost" class="col-lg-2 control-label">Rolling Stock</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createStartDateRolling" name="createStartDateRolling" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].RollStock_Start_Year">
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createEndDateRolling" name="createEndDateRolling" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].RollStock_End_Year">
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide capInput" id="createRollingCost" name="createRollingCost" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_RollingStock" /> </div>
+                                        </td>
+                                    </tr>
+                                    <!-- OPs -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createOpCost" class="col-lg-2 control-label">Operations</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createStartDateOp" name="createStartDateOp" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" data-parsley-error-message="Must Equal to OM Start on Cost & Schedule" ng-model="projectDetails[0].Ops_Start_Year">
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createEndDateOp" name="createEndDateOp" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Ops_End_Year">
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide" id="createOpCost" name="createOpCost" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_Operations" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Maintain -->
+                                    <tr>
+                                        <td class="col-md-2">
+                                            <label for="createMainCost" class="col-lg-2 control-label">Maintenance</label>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createStartDateMain" name="createStartDateMain" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" data-parsley-error-message="Must Equal to OM Start on Cost & Schedule" ng-model="projectDetails[0].Maint_Start_Year">
+                                        </td>
+                                        <td class="col-md-3">
+                                            <input type="text" class="form-control detailCostHide" id="createEndDateMain" name="createEndDateMain" data-parsley-type="digits" maxlength="4" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Maint_End_Year">
+                                        </td>
+                                        <td class="col-md-4 detailRow">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$ (M)</span>
+                                                <input type="text" class="form-control detailCostInput detailCostHide" id="createMainCost" name="createMainCost" placeholder="Cost" data-parsley-required="true" data-parsley-group="block5" ng-model="projectDetails[0].Cost_Maintenance" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group borderTop ma-top-m pad-top-l">
+                                <label for="createDetailCostTotal" class="col-lg-2 control-label ifTableIsHidden">Detail Cost Total</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$ (M)</span>
+                                        <input type="text" class="form-control detailCostHide ifTableIsHidden" id="createDetailCostTotal" name="createDetailCostTotal" readonly data-parsley-required="true" placeholder="Detail Cost Total" data-parsley-group="block5" data-parsley-equalto="#createTotalCostSimple" data-parsley-error-message="Detail Cost total must be equal to Total Cost(2017$ (M))" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group pad-bottom-xl">
+                                <label for="createDetailCapTotal" class="col-lg-2 control-label ifTableIsHidden">
+                                    Calculated Capital Total
+                                    <i class="fa fa-info-circle pad-left-s" data-toggle="tooltip" data-placement="right" title="" data-original-title="Capital Cost 2017 = design + ROW + construction + rolling stock"></i>
+                                </label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$ (M)</span>
+                                        <input type="text" class="form-control detailCostHide ifTableIsHidden" id="createDetailCapTotal" readonly name="createDetailCapTotal" placeholder="Capital Cost Total" data-parsley-group="block5" data-parsley-required="true" data-parsley-equalto="#createCaptialCost" data-parsley-error-message="The calculated Capital Cost Total must equal Capital Cost 2017" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+                <!-- Project Manager -->
+                <uib-tab>
+                    <uib-tab-heading class="tab-headers pad-left-l">
+                        <span class="step-number">7</span>
+                        <i class="fa fa-user-plus"></i> Project Manager
+                    </uib-tab-heading>
+                    <fieldset ng-scrollbars ng-scrollbars-config="config" class="wizardScroll">
+                        <!--  <div class="col-lg-12">
+                            <h3 class="dash-headers text-center">
+                                Project Manager
+                                <div class="inner-line"></div>
+                            </h3>
+                        </div> -->
+                        <!-- <legend>Project Manager Contact</legend> -->
+                        <!--print headers -->
+                        <!-- <h4 class="page-header printHeaders hidden">Project Manager Contact</h4> -->
+                        <h3 class="col-lg-12 dash-headers page-header text-center">
+                            Project Manager Contact
+                            <i class="fa fa-info-circle pad-left-s hidden" data-toggle="tooltip" data-placement="right" title="" data-original-title="Please identify the potential fund sources and dollar amounts for any additional discretionary funds that are needed to complete this project's funding plan."></i>
+                        </h3>
+                        <!-- Select Project Manager Contact -->
+                        <div class="form-group pad-bottom-l borderBottom">
+                            <label for="pmName" class="col-lg-2 control-label">Project Manager</label>
+                            <div class="col-lg-6">
+                                <label id="pmName" style="padding-top:7px"> {{ projectDetails[0].First_Name }} {{ projectDetails[0].Last_Name }} </label>
+                            </div>
+                        </div>
+                        <div class="form-group pad-bottom-l borderBottom">
+                            <label for="pmEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-6">
+                                <label id="pmEmail" style="padding-top:7px"> {{ projectDetails[0].Email }} </label>
+                            </div>
+                        </div>
+                        <div class="form-group pad-bottom-l borderBottom">
+                            <label for="pmPhone" class="col-lg-2 control-label">Phone</label>
+                            <div class="col-lg-6">
+                                <label id="pmPhone" style="padding-top:7px"> {{ projectDetails[0].Phone }}</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </uib-tab>
+            </uib-tabset>
+        </form>
+    </div>
+</div>
